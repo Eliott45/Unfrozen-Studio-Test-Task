@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Heroes.Data
 {
+    [Serializable]
     public struct HeroData
     {
         public string Id;
