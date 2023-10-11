@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Missions.Configs
 {
-    [CreateAssetMenu(fileName = nameof(MissionsConfig), menuName = "Missions/" + nameof(MissionsConfig), order = 0)]
+    [CreateAssetMenu(fileName = nameof(MissionsConfig), menuName = "Missions/" + nameof(MissionsConfig))]
     public class MissionsConfig : ScriptableObject
     {
         [SerializeField] private List<MissionData> _missions;
