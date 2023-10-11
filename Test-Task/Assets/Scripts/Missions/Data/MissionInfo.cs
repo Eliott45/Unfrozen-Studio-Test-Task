@@ -7,6 +7,7 @@ namespace Missions.Data
     public struct MissionInfo
     {
         public string Id;
+        public Sprite Preview;
         public Vector2 MapPosition;
         public string MapDisplayName;
         public string Name;
