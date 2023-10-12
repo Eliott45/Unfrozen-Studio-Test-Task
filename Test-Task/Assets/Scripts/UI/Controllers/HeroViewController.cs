@@ -6,10 +6,10 @@ namespace UI.Controllers
 {
     public class HeroViewController : IDisposable
     {
+        public event Action<string> OnHeroSelect;
+        
         private readonly HeroView _heroView;
         private readonly HeroData _heroData;
-
-        public event Action<string> OnHeroSelect;
         
         public HeroViewController(HeroView heroView, HeroData heroData)
         {

@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 8954452949461518055}
   - component: {fileID: 8954452949461518052}
   - component: {fileID: 8954452949461518054}
+  - component: {fileID: -8976478791241986250}
   m_Layer: 5
   m_Name: MissionView
   m_TagString: Untagged
@@ -290,6 +291,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!114 &-8976478791241986250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954452949461518058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c02d45c4117404e921f2d87c0098bd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _nameText: {fileID: 8954452950184313438}
+  _selectButton: {fileID: 8954452948378599152}
+  _fadePanel: {fileID: 8954452948561967352}
 --- !u!1 &8954452950184313436
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,8 +4,9 @@ using System.Collections.Generic;
 namespace Missions.Data
 {
     [Serializable]
-    public struct MissionData
+    public class MissionData
     {
+        public string Id;
         public MissionType Type;
         public MissionState State;
         public MissionInfo PrimaryMissionDetails;
