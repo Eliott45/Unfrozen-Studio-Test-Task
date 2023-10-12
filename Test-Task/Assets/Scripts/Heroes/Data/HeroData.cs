@@ -7,7 +7,8 @@ namespace Heroes.Data
     public struct HeroData
     {
         public string Id;
-        public Sprite Preview;
+        public Sprite Avatar;
+        public Sprite AvatarBackground;
         public string Name;
         public int Points;
     }
