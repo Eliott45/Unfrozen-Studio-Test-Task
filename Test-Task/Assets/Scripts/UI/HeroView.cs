@@ -10,6 +10,8 @@ namespace Heroes.Data
         [SerializeField] private TextMeshProUGUI _nameText;
         [SerializeField] private Image _avatarImage;
         [SerializeField] private Image _avatarBackgroundImage;
+        [SerializeField] private Image _selectedMarkImage;
+        [SerializeField] private GameObject _lockPanel;
 
         public void SetPoints(string pointsText)
         {
@@ -29,6 +31,16 @@ namespace Heroes.Data
         public void SetAvatarBackground(Sprite avatarBackgroundSprite)
         {
             _avatarBackgroundImage.sprite = avatarBackgroundSprite;
+        }
+
+        public void DisplayLockPanel(bool display)
+        {
+            _lockPanel.SetActive(display);
+        }
+
+        public void DisplaySelectMark(bool display)
+        {
+            _selectedMarkImage.enabled = display;
         }
     }
 }
