@@ -1,4 +1,6 @@
-﻿using TMPro;
+﻿using System;
+using Extensions;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +13,20 @@ namespace Heroes.Data
         [SerializeField] private Image _avatarImage;
         [SerializeField] private Image _avatarBackgroundImage;
         [SerializeField] private Image _selectedMarkImage;
+        [SerializeField] private Button _selectButton;
         [SerializeField] private GameObject _lockPanel;
+        
+        public event Action OnSelectButtonClick;
+
+        private void OnEnable()
+        {
+            _selectButton.Subscribe(OnSelectButtonClick);
+        }
+
+        private void OnDisable()
+        {
+            _selectButton.UnsubscribeAll();
+        }
 
         public void SetPoints(string pointsText)
         {

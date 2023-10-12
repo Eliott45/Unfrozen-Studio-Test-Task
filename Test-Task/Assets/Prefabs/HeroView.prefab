@@ -429,6 +429,7 @@ MonoBehaviour:
   _avatarImage: {fileID: 717520919759981184}
   _avatarBackgroundImage: {fileID: 717520920998078656}
   _selectedMarkImage: {fileID: 2179756792574809806}
+  _selectButton: {fileID: 493291705837234019}
   _lockPanel: {fileID: 1825225124712277332}
 --- !u!1 &717520920654446946
 GameObject:
