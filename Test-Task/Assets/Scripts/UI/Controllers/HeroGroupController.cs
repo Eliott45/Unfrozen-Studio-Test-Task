@@ -8,14 +8,14 @@ using UnityEngine;
 
 namespace UI.Controllers
 {
-    public class HeroGroupController
+    public class HeroGroupController : IDisposable
     {
         private readonly HeroConfig _heroConfig;
         private readonly HeroView _heroViewPrefab;
         private readonly IPoolApplication _poolApplication;
         private readonly Transform _heroGroupTransform;
 
-        private readonly Dictionary<HeroData, HeroView> _heroes = new();
+        private readonly Dictionary<string, HeroViewController> _heroes = new();
 
         public HeroGroupController(HeroConfig heroConfig, HeroView heroViewPrefab, 
             IPoolApplication poolApplication, Transform heroGroupTransform)
@@ -32,53 +32,43 @@ namespace UI.Controllers
         {
             foreach (var heroData in _heroConfig.GetHeroesCopy())
             {
-                var heroView = LoadHeroView(heroData);
+                var heroViewController = InitHeroViewControllers(heroData);
                 
-                _heroes.Add(heroData, heroView);
+                _heroes.Add(heroData.Id, heroViewController);
             }
         }
-
-        private HeroView LoadHeroView(HeroData data)
+        
+        public void Dispose()
         {
-            var heroView = _poolApplication.Create(_heroViewPrefab, _heroGroupTransform);
-            
-            heroView.SetAvatar(data.Avatar);
-            heroView.SetAvatarBackground(data.AvatarBackground);
-            heroView.SetHeroName(data.Name);
-            heroView.SetPoints(data.Points.ToString());
-            
-            heroView.OnSelectButtonClick += () => OnSelectHero(data.Id);
-            
-            heroView.DisplaySelectMark(data.Selected);
-            heroView.DisplayLockPanel(data.HeroState == HeroState.Locked);
-            
-            return heroView;
-        }
-
-        private void OnSelectHero(string heroId)
-        {
-            UnselectAll();
-            
             foreach (var hero in _heroes)
             {
-                if (heroId != hero.Key.Id)
-                {
-                    continue;
-                }
-                
-                hero.Key.Selected = !hero.Key.Selected;
-                hero.Value.DisplaySelectMark(hero.Key.Selected);
-                
-                break;
+                hero.Value.Dispose();
             }
+        }
+        
+        private HeroViewController InitHeroViewControllers(HeroData data)
+        {
+            var heroView = _poolApplication.Create(_heroViewPrefab, _heroGroupTransform);
+            var heroViewController = new HeroViewController(heroView, data);
+            
+            heroViewController.OnHeroSelect += OnHeroSelect;
+            
+            heroViewController.Initialize();
+            
+            return heroViewController;
+        }
+
+        private void OnHeroSelect(string heroId)
+        {
+            UnselectAll();
+            _heroes[heroId].Select();
         }
 
         private void UnselectAll()
         {
             foreach (var hero in _heroes)
             {
-                hero.Key.Selected = false;
-                hero.Value.DisplaySelectMark(false);
+                hero.Value.Unselect();
             }
         }
     }
