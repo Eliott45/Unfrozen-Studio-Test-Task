@@ -20,7 +20,7 @@ namespace UI.Views
 
         private void OnEnable()
         {
-            _selectButton.Subscribe(OnSelectButtonClick);
+            _selectButton.Subscribe(() => OnSelectButtonClick?.Invoke());
         }
 
         private void OnDisable()

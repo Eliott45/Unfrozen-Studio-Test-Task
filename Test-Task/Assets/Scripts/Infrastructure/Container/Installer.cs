@@ -1,13 +1,9 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Infrastructure.Container
 {
-    public class Installer : MonoBehaviour
+    public abstract class Installer : MonoBehaviour
     {
-        public virtual void InstallBindings(Container container)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void InstallBindings(Container container);
     }
 }
