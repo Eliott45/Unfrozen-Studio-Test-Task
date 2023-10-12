@@ -12,7 +12,7 @@ namespace Heroes.Configs
         
         public List<HeroData> GetHeroes()
         {
-            return _heroes;
+            return new List<HeroData>(_heroes);
         }
         
         public void AddHero(HeroData hero)

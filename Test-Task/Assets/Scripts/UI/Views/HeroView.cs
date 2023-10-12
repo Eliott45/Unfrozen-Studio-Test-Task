@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Heroes.Data
+namespace UI.Views
 {
     public class HeroView : MonoBehaviour
     {
