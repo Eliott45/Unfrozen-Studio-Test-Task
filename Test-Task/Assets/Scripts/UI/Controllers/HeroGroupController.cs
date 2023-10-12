@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Heroes.Configs;
+using Heroes.Data;
 using Pool.Application;
 using UI.Views;
 using UnityEngine;
@@ -27,12 +28,29 @@ namespace UI.Controllers
             InitializeHeroes();
         }
 
-        public void InitializeHeroes()
+        private void InitializeHeroes()
         {
             foreach (var heroData in _heroConfig.GetHeroes())
             {
-                _poolApplication.Create(_heroViewPrefab, _heroGroupTransform);
+                var heroView = LoadHeroView(heroData);
+                
+                _heroViews.Add(heroData.Id, heroView);
             }
+        }
+
+        private HeroView LoadHeroView(HeroData data)
+        {
+            var heroView = _poolApplication.Create(_heroViewPrefab, _heroGroupTransform);
+            
+            heroView.SetAvatar(data.Avatar);
+            heroView.SetAvatarBackground(data.AvatarBackground);
+            heroView.SetHeroName(data.Name);
+            heroView.SetPoints(data.Points.ToString());
+            
+            heroView.DisplaySelectMark(false);
+            heroView.DisplayLockPanel(false);
+            
+            return heroView;
         }
     }
 }
