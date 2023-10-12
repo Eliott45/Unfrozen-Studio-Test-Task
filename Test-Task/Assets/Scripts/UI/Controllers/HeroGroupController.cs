@@ -15,7 +15,7 @@ namespace UI.Controllers
         private readonly IPoolApplication _poolApplication;
         private readonly Transform _heroGroupTransform;
 
-        private Dictionary<string, HeroView> _heroViews = new();
+        private readonly Dictionary<HeroData, HeroView> _heroes = new();
 
         public HeroGroupController(HeroConfig heroConfig, HeroView heroViewPrefab, 
             IPoolApplication poolApplication, Transform heroGroupTransform)
@@ -30,11 +30,11 @@ namespace UI.Controllers
 
         private void InitializeHeroes()
         {
-            foreach (var heroData in _heroConfig.GetHeroes())
+            foreach (var heroData in _heroConfig.GetHeroesCopy())
             {
                 var heroView = LoadHeroView(heroData);
                 
-                _heroViews.Add(heroData.Id, heroView);
+                _heroes.Add(heroData, heroView);
             }
         }
 
@@ -47,10 +47,39 @@ namespace UI.Controllers
             heroView.SetHeroName(data.Name);
             heroView.SetPoints(data.Points.ToString());
             
-            heroView.DisplaySelectMark(false);
-            heroView.DisplayLockPanel(false);
+            heroView.OnSelectButtonClick += () => OnSelectHero(data.Id);
+            
+            heroView.DisplaySelectMark(data.Selected);
+            heroView.DisplayLockPanel(data.HeroState == HeroState.Locked);
             
             return heroView;
+        }
+
+        private void OnSelectHero(string heroId)
+        {
+            UnselectAll();
+            
+            foreach (var hero in _heroes)
+            {
+                if (heroId != hero.Key.Id)
+                {
+                    continue;
+                }
+                
+                hero.Key.Selected = !hero.Key.Selected;
+                hero.Value.DisplaySelectMark(hero.Key.Selected);
+                
+                break;
+            }
+        }
+
+        private void UnselectAll()
+        {
+            foreach (var hero in _heroes)
+            {
+                hero.Key.Selected = false;
+                hero.Value.DisplaySelectMark(false);
+            }
         }
     }
 }
