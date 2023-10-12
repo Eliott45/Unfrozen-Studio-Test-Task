@@ -12,4 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b85135593774281b7dd165c03e65817, type: 3}
   m_Name: HeroConfig
   m_EditorClassIdentifier: 
-  _heroes: []
+  _heroes:
+  - Id: 1
+    Avatar: {fileID: 21300000, guid: 6330ae5da18beb7498da1fe26eaf9cfb, type: 3}
+    AvatarBackground: {fileID: 21300000, guid: 5596318320a201c43998d48467cc4943, type: 3}
+    Name: "\u041E\u0440\u0451\u043B"
+    Points: 0
+  - Id: 2
+    Avatar: {fileID: 21300000, guid: 225be3949783349409a04e63feea0826, type: 3}
+    AvatarBackground: {fileID: 21300000, guid: 60ec81c63bb2dd343a7ac2d6c2adc5d5, type: 3}
+    Name: "\u0427\u0430\u0439\u043A\u0430"
+    Points: 0
+  - Id: 3
+    Avatar: {fileID: 21300000, guid: 112c48ad71ab8dc41a8d8b8a42b768d1, type: 3}
+    AvatarBackground: {fileID: 21300000, guid: 2334ab21d9cdddf4484c72635238eed3, type: 3}
+    Name: "\u0421\u043E\u0432\u0443\u0445"
+    Points: 0
+  - Id: 4
+    Avatar: {fileID: 21300000, guid: 6330ae5da18beb7498da1fe26eaf9cfb, type: 3}
+    AvatarBackground: {fileID: 21300000, guid: 60ec81c63bb2dd343a7ac2d6c2adc5d5, type: 3}
+    Name: "\u0412\u043E\u0440\u043E\u043D"
+    Points: 0
+  - Id: 5
+    Avatar: {fileID: 21300000, guid: 225be3949783349409a04e63feea0826, type: 3}
+    AvatarBackground: {fileID: 21300000, guid: 60ec81c63bb2dd343a7ac2d6c2adc5d5, type: 3}
+    Name: "\u0412\u043E\u0440\u043E\u043D"
+    Points: 0
