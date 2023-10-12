@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Heroes.Data
+namespace UI.Views
 {
     public class HeroView : MonoBehaviour
     {
@@ -20,7 +20,7 @@ namespace Heroes.Data
 
         private void OnEnable()
         {
-            _selectButton.Subscribe(OnSelectButtonClick);
+            _selectButton.Subscribe(() => OnSelectButtonClick?.Invoke());
         }
 
         private void OnDisable()
