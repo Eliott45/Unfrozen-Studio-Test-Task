@@ -15,13 +15,32 @@ namespace Missions.Configs
             return _missions;
         }
         
+        public List<MissionData> GetMissionsCopy()
+        {
+            var copy = new List<MissionData>(_missions.Count);
+            
+            foreach (var mission in _missions)
+            {
+                var copiedMission = new MissionData
+                {
+                    Id = mission.Id,
+                    Type = mission.Type,
+                    State = mission.State,
+                    PrimaryMissionDetails = mission.PrimaryMissionDetails,
+                    SecondaryMissionDetails = mission.SecondaryMissionDetails,
+                    RequiredPreviousMissions = mission.RequiredPreviousMissions,
+                    TemporarilyLockedMissions = mission.TemporarilyLockedMissions
+                };
+                
+                copy.Add(copiedMission);
+            }
+            
+            return copy;
+        }
+        
         public void AddMission(MissionData mission)
         {
-            mission.PrimaryMissionDetails.Id = Guid.NewGuid().ToString();
-            if (mission.Type == MissionType.Double)
-            {
-                mission.SecondaryMissionDetails.Id = Guid.NewGuid().ToString();
-            } 
+            mission.Id = Guid.NewGuid().ToString();
             _missions.Add(mission);
         }
     }

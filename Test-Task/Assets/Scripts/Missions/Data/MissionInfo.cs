@@ -4,9 +4,8 @@ using UnityEngine;
 namespace Missions.Data
 {
     [Serializable]
-    public struct MissionInfo
+    public class MissionInfo
     {
-        public string Id;
         public Sprite Preview;
         public Vector2 MapPosition;
         public string MapDisplayName;
