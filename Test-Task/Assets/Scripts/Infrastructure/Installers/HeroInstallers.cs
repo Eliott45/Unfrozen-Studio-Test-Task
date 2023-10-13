@@ -1,5 +1,6 @@
 ﻿using Heroes.Configs;
 using Infrastructure.Container;
+using Missions.Controllers;
 using Pool.Application;
 using UI.Controllers;
 using UI.Views;
@@ -15,8 +16,11 @@ namespace Infrastructure.Installers
 
         public override void InstallBindings(Container.Container container)
         {
-            container.Bind(new HeroGroupController(_heroConfig, _heroViewPrefab, 
-                container.Resolve<PoolApplication>(), _heroGroupTransform));
+            var poolApplication = container.Resolve<PoolApplication>();
+            var missionProgressController = container.Resolve<MissionProgressController>();
+            
+            container.Bind(new HeroGroupController(_heroConfig, _heroViewPrefab, missionProgressController,
+                poolApplication, _heroGroupTransform));
         }
     }
 }

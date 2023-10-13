@@ -6,6 +6,8 @@ namespace UI.Controllers
 {
     public class PreMissionViewController : IDisposable
     {
+        public event Action<string, MissionInfo> OnStartMission;
+        
         private readonly PreMissionView _view;
         private readonly PreOptionMissionView _primaryOptionView;
         private readonly PreOptionMissionView _secondaryOptionView;
@@ -24,13 +26,13 @@ namespace UI.Controllers
 
         public void Dispose()
         {
-            
+            _heroGroupController.OnHeroChange -= OnHeroChange;
+            _primaryOptionView.OnStartButton -= OnPrimaryStartButtonClick;
+            _secondaryOptionView.OnStartButton -= OnSecondaryStartButtonClick;
         }
         
         public void ShowView(MissionData data)
         {
-            _heroGroupController.OnHeroChange += OnHeroChange;
-            
             _missionData = data ?? throw new NullReferenceException(nameof(MissionInfo));
 
             HideView();
@@ -39,18 +41,29 @@ namespace UI.Controllers
             {
                 case MissionType.Single:
                     LoadAndShowOptionView(_primaryOptionView, data.PrimaryMissionDetails);
+                    
+                    _primaryOptionView.OnStartButton += OnPrimaryStartButtonClick;
                     break;
                 case MissionType.Double:
                     LoadAndShowOptionView(_primaryOptionView, data.PrimaryMissionDetails);
                     LoadAndShowOptionView(_secondaryOptionView, data.SecondaryMissionDetails);
+                    
+                    _primaryOptionView.OnStartButton += OnPrimaryStartButtonClick;
+                    _secondaryOptionView.OnStartButton += OnSecondaryStartButtonClick;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+            
+            _heroGroupController.OnHeroChange += OnHeroChange;
         }
         
         public void HideView()
         {
+            _primaryOptionView.OnStartButton -= OnPrimaryStartButtonClick;
+            _secondaryOptionView.OnStartButton -= OnSecondaryStartButtonClick;
+            _heroGroupController.OnHeroChange -= OnHeroChange;
+            
             _primaryOptionView.gameObject.SetActive(false);
             _secondaryOptionView.gameObject.SetActive(false);
         }
@@ -58,7 +71,7 @@ namespace UI.Controllers
         private void LoadAndShowOptionView(PreOptionMissionView view, MissionInfo info)
         {
             view.SetName(info.Name);
-            view.SetDescription(info.Description);
+            view.SetDescription(info.PreMissionDescription);
             view.SetPreviewSprite(info.Preview);
             view.UpdateButtonInteractable(CanStartMission());
             
@@ -74,6 +87,16 @@ namespace UI.Controllers
         {
             _primaryOptionView.UpdateButtonInteractable(CanStartMission());
             _secondaryOptionView.UpdateButtonInteractable(CanStartMission());
+        }
+
+        private void OnPrimaryStartButtonClick()
+        {
+            OnStartMission?.Invoke(_missionData.Id, _missionData.PrimaryMissionDetails);
+        }
+        
+        private void OnSecondaryStartButtonClick()
+        {
+            OnStartMission?.Invoke(_missionData.Id, _missionData.SecondaryMissionDetails);
         }
     }
 }

@@ -7,7 +7,7 @@ namespace UI.Controllers
 {
     public class MissionViewController
     {
-        public event Action<string> OnMissionSelect;
+        public event Action<string> OnPressSelectMission;
 
         private readonly string _missionId;
         private readonly MissionInfo _missionInfo;
@@ -56,7 +56,7 @@ namespace UI.Controllers
         
         private void OnSelectMission()
         {
-            OnMissionSelect?.Invoke(_missionId);
+            OnPressSelectMission?.Invoke(_missionId);
         }
     }
 }

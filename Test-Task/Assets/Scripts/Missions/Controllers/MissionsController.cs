@@ -14,6 +14,7 @@ namespace Missions.Controllers
         private readonly MissionsConfig _missionsConfig;
         private readonly MissionView _missionViewPrefab;
         private readonly PreMissionViewController _preMissionViewController;
+        private readonly MissionProgressController _missionProgressController;
         private readonly IPoolApplication _poolApplication;
         private readonly Transform _mapTransform;
 
@@ -23,12 +24,14 @@ namespace Missions.Controllers
         public MissionsController(MissionsConfig missionsConfig, 
             MissionView missionViewPrefab,
             PreMissionViewController preMissionViewController,
+            MissionProgressController missionProgressController,
             IPoolApplication poolApplication,
             Transform mapTransform)
         {
             _missionsConfig = missionsConfig ? missionsConfig : throw new NullReferenceException(nameof(MissionsConfig));
             _missionViewPrefab = missionViewPrefab ? missionViewPrefab : throw new NullReferenceException(nameof(MissionView));
             _preMissionViewController = preMissionViewController ?? throw new NullReferenceException(nameof(PreMissionViewController));
+            _missionProgressController = missionProgressController ?? throw new NullReferenceException(nameof(MissionProgressController));
             _poolApplication = poolApplication ?? throw new NullReferenceException(nameof(IPoolApplication));
             _mapTransform = mapTransform ? mapTransform : throw new NullReferenceException(nameof(Transform));
 
@@ -37,6 +40,8 @@ namespace Missions.Controllers
 
         private void InitializeMissions()
         {
+            _preMissionViewController.OnStartMission += OnPressStartMission;
+            
             foreach (var missionData in _missionsConfig.GetMissionsCopy())
             {
                 var missionViewControllers = InitMissionViewControllers(missionData);
@@ -53,6 +58,8 @@ namespace Missions.Controllers
         
         public void Dispose()
         {
+            _preMissionViewController.OnStartMission -= OnPressStartMission;
+            
             foreach (var mission in _missionPoints)
             {
                 foreach (var missionViewController in mission.Value)
@@ -88,16 +95,27 @@ namespace Missions.Controllers
         {
             var missionViewController = new MissionViewController(view, info, id);
 
-            missionViewController.OnMissionSelect += OnMissionSelect;
+            missionViewController.OnPressSelectMission += OnPressSelectMission;
 
             missionViewController.Initialize();
 
             return missionViewController;
         }
 
-        private void OnMissionSelect(string missionId)
+        private void OnPressSelectMission(string missionId)
         {
             _preMissionViewController.ShowView(_missionData[missionId]);
+        }
+
+        private void OnPressStartMission(string id, MissionInfo mission)
+        {
+            _preMissionViewController.HideView();
+            _missionProgressController.StartMission(id, mission);
+        }
+        
+        private void OnMissionComplete()
+        {
+            
         }
     }
 }

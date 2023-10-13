@@ -13,15 +13,19 @@ namespace Infrastructure.Installers
         [SerializeField] private MissionsConfig _missionsConfig;
         [SerializeField] private MissionView _missionViewPrefab;
         [SerializeField] private PreMissionView _preMissionView;
+        [SerializeField] private MissionCompleteView _missionCompleteView;
         [SerializeField] private Transform _mapTransform;
         
         public override void InstallBindings(Container.Container container)
         {
-            var preMissionViewController = new PreMissionViewController(_preMissionView, 
-                container.Resolve<HeroGroupController>());
+            var heroGroupController = container.Resolve<HeroGroupController>();
+            var preMissionViewController = new PreMissionViewController(_preMissionView, heroGroupController);
+            var missionProgressController = container.Resolve<MissionProgressController>();
+            var poolApplication = container.Resolve<PoolApplication>();
 
-            container.Bind(new MissionsController(_missionsConfig, _missionViewPrefab, preMissionViewController
-               , container.Resolve<PoolApplication>(), _mapTransform));
+            container.Bind(new MissionCompleteViewController(_missionCompleteView, missionProgressController));
+            container.Bind(new MissionsController(_missionsConfig, _missionViewPrefab, preMissionViewController, 
+                missionProgressController, poolApplication, _mapTransform));
         }
     }
 }

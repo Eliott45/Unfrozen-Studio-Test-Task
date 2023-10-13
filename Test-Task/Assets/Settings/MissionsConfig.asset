@@ -53,7 +53,7 @@ MonoBehaviour:
         \u0432\u043E\u0440\u043E\u0431\u044C\u0438"
       Reward:
         UnlockedHeroes: []
-        HeroScore: 0
+        HeroScore: 5
         OtherHeroScore: []
     SecondaryMissionDetails:
       Preview: {fileID: 0}
