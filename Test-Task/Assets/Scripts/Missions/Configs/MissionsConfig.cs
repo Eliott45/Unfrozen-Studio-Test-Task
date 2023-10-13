@@ -43,5 +43,16 @@ namespace Missions.Configs
             mission.Id = Guid.NewGuid().ToString();
             _missions.Add(mission);
         }
+        
+#if UNITY_EDITOR
+        [ContextMenu("Generate IDs")]
+		public void ConvertQuestsToJson()
+		{
+            foreach (var mission in _missions)
+            {
+                mission.Id = Guid.NewGuid().ToString();
+            }
+		}
+#endif
     }
 }

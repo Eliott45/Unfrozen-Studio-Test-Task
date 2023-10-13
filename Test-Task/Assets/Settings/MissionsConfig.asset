@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MissionsConfig
   m_EditorClassIdentifier: 
   _missions:
-  - Id: 1
+  - Id: 1e617816-2856-4953-9f70-af5397633f7e
     Type: 0
     State: 0
     PrimaryMissionDetails:
@@ -70,7 +70,7 @@ MonoBehaviour:
         OtherHeroScore: []
     RequiredPreviousMissions: []
     TemporarilyLockedMissions: []
-  - Id: 2
+  - Id: 2b866b5f-2008-4254-b92a-d1188d6b2049
     Type: 0
     State: 1
     PrimaryMissionDetails:
@@ -124,7 +124,7 @@ MonoBehaviour:
         OtherHeroScore: []
     RequiredPreviousMissions: []
     TemporarilyLockedMissions: []
-  - Id: 3
+  - Id: 63dd2b78-192c-4c88-bc25-a672020deddf
     Type: 1
     State: 1
     PrimaryMissionDetails:
@@ -219,7 +219,7 @@ MonoBehaviour:
         OtherHeroScore: []
     RequiredPreviousMissions: []
     TemporarilyLockedMissions: []
-  - Id: 4
+  - Id: 1fa42912-a040-4885-ac74-cd843177e184
     Type: 0
     State: 1
     PrimaryMissionDetails:
@@ -269,7 +269,7 @@ MonoBehaviour:
         OtherHeroScore: []
     RequiredPreviousMissions: []
     TemporarilyLockedMissions: []
-  - Id: 5
+  - Id: a3216741-f946-4c57-b188-b6acf92bfa44
     Type: 0
     State: 1
     PrimaryMissionDetails:
@@ -328,7 +328,7 @@ MonoBehaviour:
         OtherHeroScore: []
     RequiredPreviousMissions: []
     TemporarilyLockedMissions: []
-  - Id: 6
+  - Id: aa72e7da-a2ae-438c-b7fa-3f4fb4b658d5
     Type: 0
     State: 1
     PrimaryMissionDetails:
@@ -382,7 +382,7 @@ MonoBehaviour:
         OtherHeroScore: []
     RequiredPreviousMissions: []
     TemporarilyLockedMissions: []
-  - Id: 7
+  - Id: 811313eb-22c7-4099-a455-6d3a9f45a1b5
     Type: 0
     State: 1
     PrimaryMissionDetails:
@@ -434,7 +434,7 @@ MonoBehaviour:
         OtherHeroScore: []
     RequiredPreviousMissions: []
     TemporarilyLockedMissions: []
-  - Id: 8
+  - Id: 9f9d7dc6-e416-4d2d-9e93-5b4fd12f7407
     Type: 0
     State: 1
     PrimaryMissionDetails:
@@ -475,7 +475,7 @@ MonoBehaviour:
         OtherHeroScore: []
     RequiredPreviousMissions: []
     TemporarilyLockedMissions: []
-  - Id: 9
+  - Id: 79282dc8-3dd7-44de-9ec6-255668fa7ed3
     Type: 0
     State: 1
     PrimaryMissionDetails:
@@ -544,7 +544,7 @@ MonoBehaviour:
         OtherHeroScore: []
     RequiredPreviousMissions: []
     TemporarilyLockedMissions: []
-  - Id: 10
+  - Id: 943f8199-395e-49d7-875e-478ae63a3c36
     Type: 0
     State: 1
     PrimaryMissionDetails:
@@ -593,7 +593,7 @@ MonoBehaviour:
         OtherHeroScore: []
     RequiredPreviousMissions: []
     TemporarilyLockedMissions: []
-  - Id: 11
+  - Id: 1470fa0b-8790-46d4-b1a6-f3e26860a8db
     Type: 0
     State: 1
     PrimaryMissionDetails:
