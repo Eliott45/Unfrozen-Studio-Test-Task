@@ -43,5 +43,16 @@ namespace Heroes.Configs
             hero.Id = Guid.NewGuid().ToString();
             _heroes.Add(hero);
         }
+        
+#if UNITY_EDITOR
+        [ContextMenu("Generate IDs")]
+		public void ConvertQuestsToJson()
+		{
+            foreach (var hero in _heroes)
+            {
+                hero.Id = Guid.NewGuid().ToString();
+            }
+		}
+#endif
     }
 }
