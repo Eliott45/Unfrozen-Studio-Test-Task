@@ -1,48 +1,20 @@
-﻿using System;
-using Extensions;
-using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 namespace UI.Views
 {
     public class PreMissionView : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI _nameText;
-        [SerializeField] private TextMeshProUGUI _descriptionText;
-        [SerializeField] private Image _previewImage;
-        [SerializeField] private Button _startButton;
+        [SerializeField] private PreOptionMissionView _primaryOptionView;
+        [SerializeField] private PreOptionMissionView _secondaryOptionView;
 
-        public event Action OnStartButton;
-
-        private void OnEnable()
+        public PreOptionMissionView GetPrimaryOptionView()
         {
-            _startButton.Subscribe(() => OnStartButton?.Invoke());
+            return _primaryOptionView;
         }
-
-        private void OnDisable()
+        
+        public PreOptionMissionView GetSecondaryOptionView()
         {
-            _startButton.UnsubscribeAll();
-        }
-
-        public void SetName(string missionName)
-        {
-            _nameText.SetText(missionName);
-        }
-
-        public void SetDescription(string description)
-        {
-            _descriptionText.SetText(description);
-        }
-
-        public void SetPreviewSprite(Sprite preview)
-        {
-            _previewImage.sprite = preview;
-        }
-
-        public void UpdateButtonInteractable(bool interactable)
-        {
-            _startButton.interactable = interactable;
+            return _secondaryOptionView;
         }
     }
 }

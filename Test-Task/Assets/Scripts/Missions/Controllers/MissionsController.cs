@@ -9,20 +9,26 @@ using UnityEngine;
 
 namespace Missions.Controllers
 {
-    public class MapMissionsController : IDisposable
+    public class MissionsController : IDisposable
     {
         private readonly MissionsConfig _missionsConfig;
         private readonly MissionView _missionViewPrefab;
+        private readonly PreMissionViewController _preMissionViewController;
         private readonly IPoolApplication _poolApplication;
         private readonly Transform _mapTransform;
+
+        private readonly Dictionary<string, MissionViewController[]> _missionPoints = new();
+        private readonly Dictionary<string, MissionData> _missionData = new();
         
-        private readonly Dictionary<string, MissionViewController[]> _missions = new();
-        
-        public MapMissionsController(MissionsConfig missionsConfig, MissionView missionViewPrefab, IPoolApplication poolApplication,
+        public MissionsController(MissionsConfig missionsConfig, 
+            MissionView missionViewPrefab,
+            PreMissionViewController preMissionViewController,
+            IPoolApplication poolApplication,
             Transform mapTransform)
         {
             _missionsConfig = missionsConfig ? missionsConfig : throw new NullReferenceException(nameof(MissionsConfig));
             _missionViewPrefab = missionViewPrefab ? missionViewPrefab : throw new NullReferenceException(nameof(MissionView));
+            _preMissionViewController = preMissionViewController ?? throw new NullReferenceException(nameof(PreMissionViewController));
             _poolApplication = poolApplication ?? throw new NullReferenceException(nameof(IPoolApplication));
             _mapTransform = mapTransform ? mapTransform : throw new NullReferenceException(nameof(Transform));
 
@@ -40,13 +46,14 @@ namespace Missions.Controllers
                     controller.ApplyState(missionData.State);
                 }
                 
-                _missions.Add(missionData.Id, missionViewControllers);
+                _missionPoints.Add(missionData.Id, missionViewControllers);
+                _missionData.Add(missionData.Id, missionData);
             }
         }
         
         public void Dispose()
         {
-            foreach (var mission in _missions)
+            foreach (var mission in _missionPoints)
             {
                 foreach (var missionViewController in mission.Value)
                 {
@@ -88,9 +95,9 @@ namespace Missions.Controllers
             return missionViewController;
         }
 
-        private void OnMissionSelect(string obj)
+        private void OnMissionSelect(string missionId)
         {
-            // todo add logic 
+            _preMissionViewController.ShowView(_missionData[missionId]);
         }
     }
 }

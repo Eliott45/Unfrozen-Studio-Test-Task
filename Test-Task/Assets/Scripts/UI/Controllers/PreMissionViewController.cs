@@ -6,40 +6,58 @@ namespace UI.Controllers
 {
     public class PreMissionViewController : IDisposable
     {
-        public event Action OnStartMission;
-        
         private readonly PreMissionView _view;
+        private readonly PreOptionMissionView _primaryOptionView;
+        private readonly PreOptionMissionView _secondaryOptionView;
 
-        private MissionInfo _missionInfo;
-        
+        private MissionData _missionData;
+
         public PreMissionViewController(PreMissionView view)
         {
             _view = view ? view : throw new NullReferenceException(nameof(PreMissionView));
-        }
 
-        public void Initialize(MissionInfo missionInfo)
-        {
-            _missionInfo = missionInfo ?? throw new NullReferenceException(nameof(MissionInfo));
-
-            _view.SetName(_missionInfo.Name);
-            _view.SetDescription(_missionInfo.Description);
-            _view.SetPreviewSprite(_missionInfo.Preview);
-            _view.OnStartButton += OnStartMission;
+            _primaryOptionView = view.GetPrimaryOptionView();
+            _secondaryOptionView = view.GetSecondaryOptionView();
         }
 
         public void Dispose()
         {
-            _view.OnStartButton -= OnStartMission;
+            
         }
-
-        public void ShowView()
+        
+        public void ShowView(MissionData data)
         {
-            _view.gameObject.SetActive(true);
+            _missionData = data ?? throw new NullReferenceException(nameof(MissionInfo));
+
+            HideView();
+            
+            switch (data.Type)
+            {
+                case MissionType.Single:
+                    LoadAndShowOptionView(_primaryOptionView, data.PrimaryMissionDetails);
+                    break;
+                case MissionType.Double:
+                    LoadAndShowOptionView(_primaryOptionView, data.PrimaryMissionDetails);
+                    LoadAndShowOptionView(_secondaryOptionView, data.SecondaryMissionDetails);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         public void HideView()
         {
-            _view.gameObject.SetActive(false);
+            _primaryOptionView.gameObject.SetActive(false);
+            _secondaryOptionView.gameObject.SetActive(false);
+        }
+
+        private void LoadAndShowOptionView(PreOptionMissionView view, MissionInfo info)
+        {
+            view.SetName(info.Name);
+            view.SetDescription(info.Description);
+            view.SetPreviewSprite(info.Preview);
+            
+            view.gameObject.SetActive(true);
         }
     }
 }
