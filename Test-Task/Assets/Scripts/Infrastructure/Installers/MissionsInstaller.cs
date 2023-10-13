@@ -17,7 +17,8 @@ namespace Infrastructure.Installers
         
         public override void InstallBindings(Container.Container container)
         {
-            var preMissionViewController = new PreMissionViewController(_preMissionView);
+            var preMissionViewController = new PreMissionViewController(_preMissionView, 
+                container.Resolve<HeroGroupController>());
 
             container.Bind(new MissionsController(_missionsConfig, _missionViewPrefab, preMissionViewController
                , container.Resolve<PoolApplication>(), _mapTransform));

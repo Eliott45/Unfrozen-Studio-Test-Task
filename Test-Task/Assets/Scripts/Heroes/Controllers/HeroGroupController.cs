@@ -10,12 +10,17 @@ namespace UI.Controllers
 {
     public class HeroGroupController : IDisposable
     {
+        public event Action OnHeroChange;
+        
         private readonly HeroConfig _heroConfig;
         private readonly HeroView _heroViewPrefab;
         private readonly IPoolApplication _poolApplication;
         private readonly Transform _heroGroupTransform;
 
-        private readonly Dictionary<string, HeroViewController> _heroes = new();
+        private readonly Dictionary<string, HeroViewController> _heroControllers = new();
+        private readonly Dictionary<string, HeroData> _heroData = new();
+
+        private HeroData _selectedHero;
 
         public HeroGroupController(HeroConfig heroConfig, HeroView heroViewPrefab, 
             IPoolApplication poolApplication, Transform heroGroupTransform)
@@ -34,16 +39,22 @@ namespace UI.Controllers
             {
                 var heroViewController = InitHeroViewControllers(heroData);
                 
-                _heroes.Add(heroData.Id, heroViewController);
+                _heroControllers.Add(heroData.Id, heroViewController);
+                _heroData.Add(heroData.Id, heroData);
             }
         }
         
         public void Dispose()
         {
-            foreach (var hero in _heroes)
+            foreach (var hero in _heroControllers)
             {
                 hero.Value.Dispose();
             }
+        }
+
+        public bool HasSelectedHero()
+        {
+            return _selectedHero != null;
         }
         
         private HeroViewController InitHeroViewControllers(HeroData data)
@@ -58,18 +69,30 @@ namespace UI.Controllers
             return heroViewController;
         }
 
-        private void OnHeroSelect(string heroId)
-        {
-            UnselectAll();
-            _heroes[heroId].Select();
-        }
-
         private void UnselectAll()
         {
-            foreach (var hero in _heroes)
+            _selectedHero = null;
+            foreach (var hero in _heroControllers)
             {
                 hero.Value.Unselect();
             }
+            OnHeroChange?.Invoke();
+        }
+
+        private void OnHeroSelect(string heroId)
+        {
+            if (heroId == _selectedHero?.Id)
+            {
+                UnselectAll();
+                return;
+            }
+            
+            UnselectAll();
+            
+            _heroControllers[heroId].Select();
+            _selectedHero = _heroData[heroId];
+            
+            OnHeroChange?.Invoke();
         }
     }
 }

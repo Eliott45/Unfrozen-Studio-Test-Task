@@ -9,12 +9,14 @@ namespace UI.Controllers
         private readonly PreMissionView _view;
         private readonly PreOptionMissionView _primaryOptionView;
         private readonly PreOptionMissionView _secondaryOptionView;
+        private readonly HeroGroupController _heroGroupController;
 
         private MissionData _missionData;
 
-        public PreMissionViewController(PreMissionView view)
+        public PreMissionViewController(PreMissionView view, HeroGroupController heroGroupController)
         {
             _view = view ? view : throw new NullReferenceException(nameof(PreMissionView));
+            _heroGroupController = heroGroupController ?? throw new NullReferenceException(nameof(HeroGroupController));
 
             _primaryOptionView = view.GetPrimaryOptionView();
             _secondaryOptionView = view.GetSecondaryOptionView();
@@ -27,6 +29,8 @@ namespace UI.Controllers
         
         public void ShowView(MissionData data)
         {
+            _heroGroupController.OnHeroChange += OnHeroChange;
+            
             _missionData = data ?? throw new NullReferenceException(nameof(MissionInfo));
 
             HideView();
@@ -44,7 +48,7 @@ namespace UI.Controllers
                     throw new ArgumentOutOfRangeException();
             }
         }
-
+        
         public void HideView()
         {
             _primaryOptionView.gameObject.SetActive(false);
@@ -56,8 +60,20 @@ namespace UI.Controllers
             view.SetName(info.Name);
             view.SetDescription(info.Description);
             view.SetPreviewSprite(info.Preview);
+            view.UpdateButtonInteractable(CanStartMission());
             
             view.gameObject.SetActive(true);
+        }
+
+        private bool CanStartMission()
+        {
+            return _heroGroupController.HasSelectedHero() && _missionData.State == MissionState.Active;
+        }
+        
+        private void OnHeroChange()
+        {
+            _primaryOptionView.UpdateButtonInteractable(CanStartMission());
+            _secondaryOptionView.UpdateButtonInteractable(CanStartMission());
         }
     }
 }
