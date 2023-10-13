@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: MissionsConfig
   m_EditorClassIdentifier: 
   _missions:
-  - Id: 1e617816-2856-4953-9f70-af5397633f7e
+  - Id: 2ad50a6e-503b-440f-ac0a-fb977ba57c4a
     Type: 0
     State: 0
     PrimaryMissionDetails:
+      OptionId: b8dde0a0-df5e-414e-98f9-bb0803f7f93c
       Preview: {fileID: 21300000, guid: 2334ab21d9cdddf4484c72635238eed3, type: 3}
       MapPosition: {x: 100, y: -200}
       MapDisplayName: 1
@@ -55,7 +56,9 @@ MonoBehaviour:
         UnlockedHeroes: []
         HeroScore: 5
         OtherHeroScore: []
+      Completed: 0
     SecondaryMissionDetails:
+      OptionId: 548eb705-66bd-4fa3-b054-4af2657c4cec
       Preview: {fileID: 0}
       MapPosition: {x: 0, y: 0}
       MapDisplayName: 
@@ -68,12 +71,14 @@ MonoBehaviour:
         UnlockedHeroes: []
         HeroScore: 0
         OtherHeroScore: []
+      Completed: 0
     RequiredPreviousMissions: []
     TemporarilyLockedMissions: []
-  - Id: 2b866b5f-2008-4254-b92a-d1188d6b2049
+  - Id: eb91b1d3-c4cc-4eb7-9a55-0017cfb450fe
     Type: 0
     State: 1
     PrimaryMissionDetails:
+      OptionId: ecafb52f-9f54-4cda-a813-c71da619b077
       Preview: {fileID: 21300000, guid: 60ec81c63bb2dd343a7ac2d6c2adc5d5, type: 3}
       MapPosition: {x: 500, y: -50}
       MapDisplayName: 2
@@ -109,7 +114,9 @@ MonoBehaviour:
         UnlockedHeroes: []
         HeroScore: 0
         OtherHeroScore: []
+      Completed: 0
     SecondaryMissionDetails:
+      OptionId: 5c315176-fe73-42e5-9fe1-b774ca1c47f8
       Preview: {fileID: 0}
       MapPosition: {x: 0, y: 0}
       MapDisplayName: 
@@ -122,12 +129,15 @@ MonoBehaviour:
         UnlockedHeroes: []
         HeroScore: 0
         OtherHeroScore: []
-    RequiredPreviousMissions: []
+      Completed: 0
+    RequiredPreviousMissions:
+    - 2ad50a6e-503b-440f-ac0a-fb977ba57c4a
     TemporarilyLockedMissions: []
-  - Id: 63dd2b78-192c-4c88-bc25-a672020deddf
+  - Id: 7f61aa53-5f37-4e05-b1a2-c9315566d5c5
     Type: 1
     State: 1
     PrimaryMissionDetails:
+      OptionId: 48b72f55-b004-465a-836d-e781dd72aeee
       Preview: {fileID: 21300000, guid: 5596318320a201c43998d48467cc4943, type: 3}
       MapPosition: {x: -225, y: -50}
       MapDisplayName: 3.1
@@ -171,7 +181,9 @@ MonoBehaviour:
         UnlockedHeroes: []
         HeroScore: 0
         OtherHeroScore: []
+      Completed: 0
     SecondaryMissionDetails:
+      OptionId: 97d9d648-efee-424e-a757-a25523e6c810
       Preview: {fileID: 21300000, guid: 60ec81c63bb2dd343a7ac2d6c2adc5d5, type: 3}
       MapPosition: {x: -100, y: -50}
       MapDisplayName: 3.2
@@ -217,12 +229,15 @@ MonoBehaviour:
         UnlockedHeroes: []
         HeroScore: 0
         OtherHeroScore: []
-    RequiredPreviousMissions: []
+      Completed: 0
+    RequiredPreviousMissions:
+    - 2ad50a6e-503b-440f-ac0a-fb977ba57c4a
     TemporarilyLockedMissions: []
-  - Id: 1fa42912-a040-4885-ac74-cd843177e184
+  - Id: 8817af4b-d6d6-4045-93dc-653b4a75659a
     Type: 0
     State: 1
     PrimaryMissionDetails:
+      OptionId: 0b6cd1d1-5735-488f-b26e-6a996d92b0df
       Preview: {fileID: 21300000, guid: 2334ab21d9cdddf4484c72635238eed3, type: 3}
       MapPosition: {x: 525, y: 200}
       MapDisplayName: 4
@@ -254,7 +269,9 @@ MonoBehaviour:
         UnlockedHeroes: []
         HeroScore: 0
         OtherHeroScore: []
+      Completed: 0
     SecondaryMissionDetails:
+      OptionId: 54eb2ad7-cf7c-4478-91c4-c905a40e5ec8
       Preview: {fileID: 0}
       MapPosition: {x: 0, y: 0}
       MapDisplayName: 
@@ -267,12 +284,15 @@ MonoBehaviour:
         UnlockedHeroes: []
         HeroScore: 0
         OtherHeroScore: []
-    RequiredPreviousMissions: []
+      Completed: 0
+    RequiredPreviousMissions:
+    - eb91b1d3-c4cc-4eb7-9a55-0017cfb450fe
     TemporarilyLockedMissions: []
-  - Id: a3216741-f946-4c57-b188-b6acf92bfa44
+  - Id: ef4d9bfa-42bf-40ac-8c61-851ce868ead8
     Type: 0
     State: 1
     PrimaryMissionDetails:
+      OptionId: c40e491b-07e6-4f52-9892-705a5527908d
       Preview: {fileID: 21300000, guid: 60ec81c63bb2dd343a7ac2d6c2adc5d5, type: 3}
       MapPosition: {x: -300, y: 150}
       MapDisplayName: 5
@@ -313,7 +333,9 @@ MonoBehaviour:
         UnlockedHeroes: []
         HeroScore: 0
         OtherHeroScore: []
+      Completed: 0
     SecondaryMissionDetails:
+      OptionId: 6d243550-d330-4097-b19c-633fc550c4ab
       Preview: {fileID: 0}
       MapPosition: {x: 0, y: 0}
       MapDisplayName: 
@@ -326,12 +348,15 @@ MonoBehaviour:
         UnlockedHeroes: []
         HeroScore: 0
         OtherHeroScore: []
-    RequiredPreviousMissions: []
+      Completed: 0
+    RequiredPreviousMissions:
+    - 
     TemporarilyLockedMissions: []
-  - Id: aa72e7da-a2ae-438c-b7fa-3f4fb4b658d5
+  - Id: ede6e9e1-1f99-4c90-a4c9-d6f9e143de18
     Type: 0
     State: 1
     PrimaryMissionDetails:
+      OptionId: 548a4d15-49aa-40b5-9ea1-6d6c04711715
       Preview: {fileID: 21300000, guid: 5596318320a201c43998d48467cc4943, type: 3}
       MapPosition: {x: 25, y: 150}
       MapDisplayName: 6
@@ -367,7 +392,9 @@ MonoBehaviour:
         UnlockedHeroes: []
         HeroScore: 0
         OtherHeroScore: []
+      Completed: 0
     SecondaryMissionDetails:
+      OptionId: 4489af38-3a8e-4311-9ffa-0ed21a79b218
       Preview: {fileID: 0}
       MapPosition: {x: 0, y: 0}
       MapDisplayName: 
@@ -380,12 +407,15 @@ MonoBehaviour:
         UnlockedHeroes: []
         HeroScore: 0
         OtherHeroScore: []
-    RequiredPreviousMissions: []
+      Completed: 0
+    RequiredPreviousMissions:
+    - 97d9d648-efee-424e-a757-a25523e6c810
     TemporarilyLockedMissions: []
-  - Id: 811313eb-22c7-4099-a455-6d3a9f45a1b5
+  - Id: ec69f143-1796-458a-a6ac-51c2bb2b46d5
     Type: 0
     State: 1
     PrimaryMissionDetails:
+      OptionId: 1098a2c0-23e1-4a0e-bfe2-5c771c1b37f5
       Preview: {fileID: 21300000, guid: 60ec81c63bb2dd343a7ac2d6c2adc5d5, type: 3}
       MapPosition: {x: 700, y: 50}
       MapDisplayName: 7
@@ -419,7 +449,9 @@ MonoBehaviour:
         UnlockedHeroes: []
         HeroScore: 0
         OtherHeroScore: []
+      Completed: 0
     SecondaryMissionDetails:
+      OptionId: b57502f6-00fb-42fe-aa34-a04e0f9b5d35
       Preview: {fileID: 0}
       MapPosition: {x: 0, y: 0}
       MapDisplayName: 
@@ -432,12 +464,14 @@ MonoBehaviour:
         UnlockedHeroes: []
         HeroScore: 0
         OtherHeroScore: []
+      Completed: 0
     RequiredPreviousMissions: []
     TemporarilyLockedMissions: []
-  - Id: 9f9d7dc6-e416-4d2d-9e93-5b4fd12f7407
+  - Id: e57e154e-1047-4280-8c72-da6f5eb7b1b2
     Type: 0
     State: 1
     PrimaryMissionDetails:
+      OptionId: d03ebe4a-1552-44d0-b576-1fe07011142c
       Preview: {fileID: 21300000, guid: 2334ab21d9cdddf4484c72635238eed3, type: 3}
       MapPosition: {x: -500, y: 350}
       MapDisplayName: 8
@@ -460,7 +494,9 @@ MonoBehaviour:
         UnlockedHeroes: []
         HeroScore: 0
         OtherHeroScore: []
+      Completed: 0
     SecondaryMissionDetails:
+      OptionId: 00119487-197b-4c6c-a19c-b26cb31ec70b
       Preview: {fileID: 0}
       MapPosition: {x: 0, y: 0}
       MapDisplayName: 
@@ -473,12 +509,14 @@ MonoBehaviour:
         UnlockedHeroes: []
         HeroScore: 0
         OtherHeroScore: []
+      Completed: 0
     RequiredPreviousMissions: []
     TemporarilyLockedMissions: []
-  - Id: 79282dc8-3dd7-44de-9ec6-255668fa7ed3
+  - Id: a9ccf03b-076d-48d5-87c2-1b3dcc483d46
     Type: 0
     State: 1
     PrimaryMissionDetails:
+      OptionId: 81019a3e-4a7f-4f09-b488-02517ff5f6d0
       Preview: {fileID: 21300000, guid: 60ec81c63bb2dd343a7ac2d6c2adc5d5, type: 3}
       MapPosition: {x: 25, y: 300}
       MapDisplayName: 9
@@ -529,7 +567,9 @@ MonoBehaviour:
         UnlockedHeroes: []
         HeroScore: 0
         OtherHeroScore: []
+      Completed: 0
     SecondaryMissionDetails:
+      OptionId: 16a6f5e4-2bee-4462-bec3-b7bbb8fb1707
       Preview: {fileID: 0}
       MapPosition: {x: 0, y: 0}
       MapDisplayName: 
@@ -542,12 +582,14 @@ MonoBehaviour:
         UnlockedHeroes: []
         HeroScore: 0
         OtherHeroScore: []
+      Completed: 0
     RequiredPreviousMissions: []
     TemporarilyLockedMissions: []
-  - Id: 943f8199-395e-49d7-875e-478ae63a3c36
+  - Id: 55f9f29c-af14-4d78-9fb2-91d8f514a10a
     Type: 0
     State: 1
     PrimaryMissionDetails:
+      OptionId: 7c66cc27-44a1-4afa-9b04-279601858dac
       Preview: {fileID: 0}
       MapPosition: {x: 200, y: 400}
       MapDisplayName: 10
@@ -578,7 +620,9 @@ MonoBehaviour:
         UnlockedHeroes: []
         HeroScore: 0
         OtherHeroScore: []
+      Completed: 0
     SecondaryMissionDetails:
+      OptionId: 41216d0a-bff5-425c-81e1-468b5a542727
       Preview: {fileID: 0}
       MapPosition: {x: 0, y: 0}
       MapDisplayName: 
@@ -591,12 +635,14 @@ MonoBehaviour:
         UnlockedHeroes: []
         HeroScore: 0
         OtherHeroScore: []
+      Completed: 0
     RequiredPreviousMissions: []
     TemporarilyLockedMissions: []
-  - Id: 1470fa0b-8790-46d4-b1a6-f3e26860a8db
+  - Id: 47eed3d4-2d74-46f8-8fa7-b47ed00b962f
     Type: 0
     State: 1
     PrimaryMissionDetails:
+      OptionId: c03767cc-9e6b-4042-90b4-b47b9e5b82ab
       Preview: {fileID: 21300000, guid: 5596318320a201c43998d48467cc4943, type: 3}
       MapPosition: {x: 0, y: 500}
       MapDisplayName: 11
@@ -626,7 +672,9 @@ MonoBehaviour:
         UnlockedHeroes: []
         HeroScore: 0
         OtherHeroScore: []
+      Completed: 0
     SecondaryMissionDetails:
+      OptionId: 2bed5dc0-ab73-4b9b-910b-ef862000e0a0
       Preview: {fileID: 0}
       MapPosition: {x: 0, y: 0}
       MapDisplayName: 
@@ -639,5 +687,6 @@ MonoBehaviour:
         UnlockedHeroes: []
         HeroScore: 0
         OtherHeroScore: []
+      Completed: 0
     RequiredPreviousMissions: []
     TemporarilyLockedMissions: []

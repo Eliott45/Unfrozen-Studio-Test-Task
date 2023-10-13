@@ -18,23 +18,13 @@ namespace Missions.Configs
         public List<MissionData> GetMissionsCopy()
         {
             var copy = new List<MissionData>(_missions.Count);
-            
+
             foreach (var mission in _missions)
             {
-                var copiedMission = new MissionData
-                {
-                    Id = mission.Id,
-                    Type = mission.Type,
-                    State = mission.State,
-                    PrimaryMissionDetails = mission.PrimaryMissionDetails,
-                    SecondaryMissionDetails = mission.SecondaryMissionDetails,
-                    RequiredPreviousMissions = mission.RequiredPreviousMissions,
-                    TemporarilyLockedMissions = mission.TemporarilyLockedMissions
-                };
-                
-                copy.Add(copiedMission);
+                var clonedMission = (MissionData)mission.Clone();
+                copy.Add(clonedMission);
             }
-            
+
             return copy;
         }
         
@@ -51,6 +41,8 @@ namespace Missions.Configs
             foreach (var mission in _missions)
             {
                 mission.Id = Guid.NewGuid().ToString();
+                mission.PrimaryMissionDetails.OptionId = Guid.NewGuid().ToString();
+                mission.SecondaryMissionDetails.OptionId = Guid.NewGuid().ToString();
             }
 		}
 #endif

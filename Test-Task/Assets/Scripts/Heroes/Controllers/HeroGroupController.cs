@@ -129,12 +129,11 @@ namespace UI.Controllers
             OnHeroChange?.Invoke();
         }
 
-        private void OnMissionComplete(string id, MissionReward reward)
+        private void OnMissionComplete(string id, MissionInfo info)
         {
-            UpdateHeroPoints(reward);
-            UpdateOtherHeroesPoints(reward);
-            UnlockHeroes(reward);
-            UnselectAll();
+            UpdateHeroPoints(info.Reward);
+            UpdateOtherHeroesPoints(info.Reward);
+            UnlockHeroes(info.Reward);
         }
     }
 }

@@ -21,17 +21,8 @@ namespace Heroes.Configs
             
             foreach (var hero in _heroes)
             {
-                var copiedHero = new HeroData
-                {
-                    Id = hero.Id,
-                    HeroState = hero.HeroState,
-                    Avatar = hero.Avatar,
-                    AvatarBackground = hero.AvatarBackground,
-                    Name = hero.Name,
-                    Selected = hero.Selected,
-                    Points = hero.Points
-                };
-                
+                var copiedHero = (HeroData)hero.Clone();
+
                 copy.Add(copiedHero);
             }
             

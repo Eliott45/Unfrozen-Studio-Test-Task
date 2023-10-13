@@ -40,6 +40,7 @@ namespace Missions.Controllers
 
         private void InitializeMissions()
         {
+            _missionProgressController.OnMissionComplete += OnMissionComplete;
             _preMissionViewController.OnStartMission += OnPressStartMission;
             
             foreach (var missionData in _missionsConfig.GetMissionsCopy())
@@ -55,9 +56,10 @@ namespace Missions.Controllers
                 _missionData.Add(missionData.Id, missionData);
             }
         }
-        
+
         public void Dispose()
         {
+            _missionProgressController.OnMissionComplete -= OnMissionComplete;
             _preMissionViewController.OnStartMission -= OnPressStartMission;
             
             foreach (var mission in _missionPoints)
@@ -93,11 +95,11 @@ namespace Missions.Controllers
 
         private MissionViewController InitMissionViewController(MissionView view, MissionInfo info, string id)
         {
-            var missionViewController = new MissionViewController(view, info, id);
+            var missionViewController = new MissionViewController(view);
 
             missionViewController.OnPressSelectMission += OnPressSelectMission;
 
-            missionViewController.Initialize();
+            missionViewController.LoadData(info, id);
 
             return missionViewController;
         }
@@ -113,9 +115,80 @@ namespace Missions.Controllers
             _missionProgressController.StartMission(id, mission);
         }
         
-        private void OnMissionComplete()
+        private void OnMissionComplete(string id, MissionInfo info)
         {
-            
+            _missionData[id].State = MissionState.Completed;
+            info.Completed = true;
+
+            foreach (var missionViewController in _missionPoints[id])
+            {
+                missionViewController.ApplyState(_missionData[id].State);
+            }
+
+            CheckAndUnlockMissions();
+        }
+        
+        private void CheckAndUnlockMissions()
+        {
+            foreach (var missionData in _missionData.Values)
+            {
+                if (missionData.State != MissionState.Locked)
+                {
+                    continue;
+                }
+                
+                var allPreviousMissionsCompleted = CheckRequiredMissions(missionData);
+
+                if (!allPreviousMissionsCompleted)
+                {
+                    continue;
+                }
+                
+                missionData.State = MissionState.Active;
+
+                if (!_missionPoints.TryGetValue(missionData.Id, out var missionViewControllers))
+                {
+                    continue;
+                }
+                
+                foreach (var missionViewController in missionViewControllers)
+                {
+                    missionViewController.ApplyState(missionData.State);
+                }
+            }
+        }
+
+        private bool CheckRequiredMissions(MissionData mission)
+        {
+            foreach (var requiredMissionId in mission.RequiredPreviousMissions)
+            {
+                if (!IsMissionCompleted(requiredMissionId))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private bool IsMissionCompleted(string missionId)
+        {
+            if (_missionData.TryGetValue(missionId, out var missionData))
+            {
+                return missionData.State == MissionState.Completed ||
+                       IsPrimaryMissionCompleted(missionData.PrimaryMissionDetails, missionId) ||
+                       IsSecondaryMissionCompleted(missionData.SecondaryMissionDetails, missionId);
+            }
+            return false;
+        }
+
+        private bool IsPrimaryMissionCompleted(MissionInfo missionInfo, string missionId)
+        {
+            return missionInfo.OptionId == missionId && missionInfo.Completed;
+        }
+
+        private bool IsSecondaryMissionCompleted(MissionInfo missionInfo, string missionId)
+        {
+            return missionInfo.OptionId == missionId && missionInfo.Completed;
         }
     }
 }

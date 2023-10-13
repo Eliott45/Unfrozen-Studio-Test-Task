@@ -6,7 +6,7 @@ namespace Missions.Controllers
     public class MissionProgressController
     {
         public event Action<string, MissionInfo> OnStartMission; 
-        public event Action<string, MissionReward> OnMissionComplete;
+        public event Action<string, MissionInfo> OnMissionComplete;
         
         public void StartMission(string id, MissionInfo mission)
         {
@@ -15,7 +15,7 @@ namespace Missions.Controllers
 
         public void CompleteMission(string id, MissionInfo mission)
         {
-            OnMissionComplete?.Invoke(id, mission.Reward);
+            OnMissionComplete?.Invoke(id, mission);
         }
     }
 }

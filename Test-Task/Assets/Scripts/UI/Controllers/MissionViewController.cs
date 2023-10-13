@@ -8,21 +8,23 @@ namespace UI.Controllers
     public class MissionViewController
     {
         public event Action<string> OnPressSelectMission;
-
-        private readonly string _missionId;
-        private readonly MissionInfo _missionInfo;
+        
         private readonly MissionView _missionView;
         
-        public MissionViewController(MissionView view, MissionInfo info, string missionId)
+        private string _missionId;
+        private MissionInfo _missionInfo;
+        
+        public MissionViewController(MissionView view)
         {
             _missionView = view ? view : throw new NullReferenceException(nameof(MissionView));
-            
-            _missionInfo = info ?? throw new NullReferenceException(nameof(MissionData));
-            _missionId = missionId;
+
         }
         
-        public void Initialize()
+        public void LoadData(MissionInfo info, string missionId)
         {
+            _missionInfo = info ?? throw new NullReferenceException(nameof(MissionData));
+            _missionId = missionId;
+            
             _missionView.SetMissionName(_missionInfo.MapDisplayName);
             _missionView.gameObject.transform.localPosition = _missionInfo.MapPosition;
             _missionView.OnSelectButtonClick += OnSelectMission;
