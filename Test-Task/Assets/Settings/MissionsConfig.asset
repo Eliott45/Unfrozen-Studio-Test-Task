@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: MissionsConfig
   m_EditorClassIdentifier: 
   _missions:
-  - Id: 1e617816-2856-4953-9f70-af5397633f7e
+  - Id: 2ad50a6e-503b-440f-ac0a-fb977ba57c4a
     Type: 0
     State: 0
-    PrimaryMissionDetails:
-      Preview: {fileID: 0}
+    MissionOptions:
+    - Id: 917f1d84-5d61-48aa-9034-cc9378f27fad
+      Preview: {fileID: 21300000, guid: 2334ab21d9cdddf4484c72635238eed3, type: 3}
       MapPosition: {x: 100, y: -200}
       MapDisplayName: 1
       Name: "\u041F\u0435\u0440\u0435\u043F\u043E\u043B\u043E\u0445 \u0432 \u0433\u043D\u0435\u0437\u0434\u0435"
@@ -53,28 +54,18 @@ MonoBehaviour:
         \u0432\u043E\u0440\u043E\u0431\u044C\u0438"
       Reward:
         UnlockedHeroes: []
-        HeroScore: 0
+        HeroScore: 5
         OtherHeroScore: []
-    SecondaryMissionDetails:
-      Preview: {fileID: 0}
-      MapPosition: {x: 0, y: 0}
-      MapDisplayName: 
-      Name: 
-      PreMissionDescription: 
-      Description: 
-      PlayerSide: 
-      EnemySide: 
-      Reward:
-        UnlockedHeroes: []
-        HeroScore: 0
-        OtherHeroScore: []
+      Completed: 0
     RequiredPreviousMissions: []
+    RequiredPreviousOptions: []
     TemporarilyLockedMissions: []
-  - Id: 2b866b5f-2008-4254-b92a-d1188d6b2049
+  - Id: eb91b1d3-c4cc-4eb7-9a55-0017cfb450fe
     Type: 0
     State: 1
-    PrimaryMissionDetails:
-      Preview: {fileID: 0}
+    MissionOptions:
+    - Id: 6d96b4ed-3375-49a4-967f-96825855a64d
+      Preview: {fileID: 21300000, guid: 60ec81c63bb2dd343a7ac2d6c2adc5d5, type: 3}
       MapPosition: {x: 500, y: -50}
       MapDisplayName: 2
       Name: "\u0414\u0430\u043B\u044C\u043D\u0438\u0435 \u0434\u0430\u043B\u0438"
@@ -85,50 +76,31 @@ MonoBehaviour:
         \u041D\u0430\u0434\u043E \u0441\u043B\u0435\u0442\u0430\u0442\u044C \u043A
         \u043D\u0438\u043C \u0438 \u0440\u0430\u0441\u0441\u043F\u0440\u043E\u0441\u0438\u0442\u044C
         \u043E \u043F\u043E\u0434\u0440\u043E\u0431\u043D\u043E\u0441\u0442\u044F\u0445."
-      Description: "\u0414\u0430\u0436\u0435 \u0440\u0430\u0437\u0443\u043C\u043D\u044B\u0435
-        \u0447\u0430\u0439\u043A\u0438 \u0432\u043E\u0432\u0441\u0435 \u043D\u0435
-        \u0445\u043E\u0442\u044F\u0442 \u043F\u0443\u0441\u043A\u0430\u0442\u044C
-        \u043A \u0441\u0435\u0431\u0435 \u0447\u0443\u0436\u0430\u043A\u0430 \u0438
-        \u044F\u0440\u043E\u0441\u0442\u043D\u043E \u0437\u0430\u0449\u0438\u0449\u0430\u044E\u0442
-        \u0433\u043D\u0435\u0437\u0434\u043E\u0432\u044C\u044F. \u0412\u0435\u0440\u0445\u043E\u0432\u043D\u044B\u0439
-        \u0427\u0430\u0439 \u043D\u0435 \u0434\u0430\u0451\u0442 \u0433\u0435\u0440\u043E\u044E
-        \u0430\u0443\u0434\u0438\u0435\u043D\u0446\u0438\u0438. \u041D\u043E \u0435\u043C\u0443
-        \u0443\u0434\u0430\u0451\u0442\u0441\u044F \u0437\u0430\u0432\u043E\u0435\u0432\u0430\u0442\u044C
-        \u0443\u0432\u0430\u0436\u0435\u043D\u0438\u0435 \u0427\u0430\u0439\u043A\u0438
-        \u2014\_\u043C\u043E\u043B\u043E\u0434\u043E\u0439 \u043D\u0430\u0441\u043B\u0435\u0434\u043D\u0438\u0446\u044B
-        \u043F\u043B\u0435\u043C\u0435\u043D\u0438. \u041E\u043D\u0430 \u043F\u0440\u0438\u0437\u043D\u0430\u0451\u0442\u0441\u044F,
-        \u0447\u0442\u043E \u043E\u0445\u043E\u0442\u043D\u0438\u043A\u0438 \u043F\u0440\u0430\u0432\u0434\u0430
-        \u043F\u0440\u043E\u043F\u0430\u0434\u0430\u044E\u0442 \u0432 \u043C\u043E\u0440\u0435,
-        \u0430 \u043F\u043B\u0435\u043C\u044F \u044D\u0442\u043E \u0437\u0430\u043C\u0430\u043B\u0447\u0438\u0432\u0430\u0435\u0442.
-        \u0427\u0430\u0439\u043A\u0430 \u0445\u043E\u0447\u0435\u0442 \u0432\u043C\u0435\u0441\u0442\u0435
-        \u0441 \u043D\u0430\u043C\u0438 \u0440\u0430\u0437\u043E\u0431\u0440\u0430\u0442\u044C\u0441\u044F
-        \u0432 \u043F\u0440\u0438\u0447\u0438\u043D\u0430\u0445."
+      Description: "\u0413\u043E\u0432\u043E\u0440\u044F\u0442, \u043D\u0435\u043A\u043E\u0442\u043E\u0440\u044B\u0435
+        \u0447\u0430\u0439\u043A\u0438 \u0443\u043B\u0435\u0442\u0430\u044E\u0442
+        \u0440\u044B\u0431\u0430\u0447\u0438\u0442\u044C \u0434\u0430\u043B\u0435\u043A\u043E
+        \u043E\u0442 \u0431\u0435\u0440\u0435\u0433\u0430 \u0438 \u043D\u0435 \u0432\u043E\u0437\u0432\u0440\u0430\u0449\u0430\u044E\u0442\u0441\u044F.
+        \u041D\u0430\u0434\u043E \u0441\u043B\u0435\u0442\u0430\u0442\u044C \u043A
+        \u043D\u0438\u043C \u0438 \u0440\u0430\u0441\u0441\u043F\u0440\u043E\u0441\u0438\u0442\u044C
+        \u043E \u043F\u043E\u0434\u0440\u043E\u0431\u043D\u043E\u0441\u0442\u044F\u0445."
       PlayerSide: "\u041E\u0440\u043B\u044B"
       EnemySide: "\u0427\u0430\u0439\u043A\u0438"
       Reward:
-        UnlockedHeroes: []
-        HeroScore: 0
+        UnlockedHeroes:
+        - 39f83b13-3684-4d33-be18-105b4fb39fb0
+        HeroScore: 5
         OtherHeroScore: []
-    SecondaryMissionDetails:
-      Preview: {fileID: 0}
-      MapPosition: {x: 0, y: 0}
-      MapDisplayName: 
-      Name: 
-      PreMissionDescription: 
-      Description: 
-      PlayerSide: 
-      EnemySide: 
-      Reward:
-        UnlockedHeroes: []
-        HeroScore: 0
-        OtherHeroScore: []
-    RequiredPreviousMissions: []
+      Completed: 0
+    RequiredPreviousMissions:
+    - 2ad50a6e-503b-440f-ac0a-fb977ba57c4a
+    RequiredPreviousOptions: []
     TemporarilyLockedMissions: []
-  - Id: 63dd2b78-192c-4c88-bc25-a672020deddf
+  - Id: 7f61aa53-5f37-4e05-b1a2-c9315566d5c5
     Type: 1
     State: 1
-    PrimaryMissionDetails:
-      Preview: {fileID: 0}
+    MissionOptions:
+    - Id: d35fd9cc-71c6-4292-b891-59a344535de4
+      Preview: {fileID: 21300000, guid: 5596318320a201c43998d48467cc4943, type: 3}
       MapPosition: {x: -225, y: -50}
       MapDisplayName: 3.1
       Name: "\u0412\u043E\u0440\u043E\u043D\u044B \u043F\u0440\u043E\u0442\u0438\u0432
@@ -169,10 +141,13 @@ MonoBehaviour:
       EnemySide: "\u0412\u043E\u0440\u043E\u043D\u044B"
       Reward:
         UnlockedHeroes: []
-        HeroScore: 0
-        OtherHeroScore: []
-    SecondaryMissionDetails:
-      Preview: {fileID: 0}
+        HeroScore: 5
+        OtherHeroScore:
+        - HeroId: cf6e5fba-602c-4604-94f5-1351c08e414f
+          Points: -10
+      Completed: 0
+    - Id: 2c650c69-21ef-4213-8038-0e097653b3ca
+      Preview: {fileID: 21300000, guid: 2334ab21d9cdddf4484c72635238eed3, type: 3}
       MapPosition: {x: -100, y: -50}
       MapDisplayName: 3.2
       Name: "\u0412\u043E\u0440\u043E\u043D\u044B \u043F\u0440\u043E\u0442\u0438\u0432
@@ -215,15 +190,22 @@ MonoBehaviour:
       EnemySide: "\u0421\u043E\u0432\u044B"
       Reward:
         UnlockedHeroes: []
-        HeroScore: 0
-        OtherHeroScore: []
-    RequiredPreviousMissions: []
-    TemporarilyLockedMissions: []
-  - Id: 1fa42912-a040-4885-ac74-cd843177e184
+        HeroScore: 5
+        OtherHeroScore:
+        - HeroId: 7670810b-5607-4ea0-97ad-c30fa90b316e
+          Points: -10
+      Completed: 0
+    RequiredPreviousMissions:
+    - 2ad50a6e-503b-440f-ac0a-fb977ba57c4a
+    RequiredPreviousOptions: []
+    TemporarilyLockedMissions:
+    - eb91b1d3-c4cc-4eb7-9a55-0017cfb450fe
+  - Id: 8817af4b-d6d6-4045-93dc-653b4a75659a
     Type: 0
     State: 1
-    PrimaryMissionDetails:
-      Preview: {fileID: 0}
+    MissionOptions:
+    - Id: 6af59a9d-d7c4-492f-bde6-e1988fed5f87
+      Preview: {fileID: 21300000, guid: 60ec81c63bb2dd343a7ac2d6c2adc5d5, type: 3}
       MapPosition: {x: 525, y: 200}
       MapDisplayName: 4
       Name: "\u0428\u0445\u0435\u0440\u044B"
@@ -252,28 +234,19 @@ MonoBehaviour:
       EnemySide: "\u0427\u0430\u0439\u043A\u0438"
       Reward:
         UnlockedHeroes: []
-        HeroScore: 0
+        HeroScore: 5
         OtherHeroScore: []
-    SecondaryMissionDetails:
-      Preview: {fileID: 0}
-      MapPosition: {x: 0, y: 0}
-      MapDisplayName: 
-      Name: 
-      PreMissionDescription: 
-      Description: 
-      PlayerSide: 
-      EnemySide: 
-      Reward:
-        UnlockedHeroes: []
-        HeroScore: 0
-        OtherHeroScore: []
-    RequiredPreviousMissions: []
+      Completed: 0
+    RequiredPreviousMissions:
+    - eb91b1d3-c4cc-4eb7-9a55-0017cfb450fe
+    RequiredPreviousOptions: []
     TemporarilyLockedMissions: []
-  - Id: a3216741-f946-4c57-b188-b6acf92bfa44
+  - Id: ef4d9bfa-42bf-40ac-8c61-851ce868ead8
     Type: 0
     State: 1
-    PrimaryMissionDetails:
-      Preview: {fileID: 0}
+    MissionOptions:
+    - Id: 557e7f70-d901-4b52-b1ab-d451c4235df2
+      Preview: {fileID: 21300000, guid: 60ec81c63bb2dd343a7ac2d6c2adc5d5, type: 3}
       MapPosition: {x: -300, y: 150}
       MapDisplayName: 5
       Name: "\u0420\u0435\u043A\u0440\u0443\u0442\u0438\u043D\u0433 \u0421\u043E\u0432\u0443\u0445\u0430"
@@ -310,29 +283,21 @@ MonoBehaviour:
       PlayerSide: "\u041E\u0440\u043B\u044B"
       EnemySide: "\u0421\u043E\u0432\u044B"
       Reward:
-        UnlockedHeroes: []
-        HeroScore: 0
+        UnlockedHeroes:
+        - 7670810b-5607-4ea0-97ad-c30fa90b316e
+        HeroScore: 5
         OtherHeroScore: []
-    SecondaryMissionDetails:
-      Preview: {fileID: 0}
-      MapPosition: {x: 0, y: 0}
-      MapDisplayName: 
-      Name: 
-      PreMissionDescription: 
-      Description: 
-      PlayerSide: 
-      EnemySide: 
-      Reward:
-        UnlockedHeroes: []
-        HeroScore: 0
-        OtherHeroScore: []
+      Completed: 0
     RequiredPreviousMissions: []
+    RequiredPreviousOptions:
+    - d35fd9cc-71c6-4292-b891-59a344535de4
     TemporarilyLockedMissions: []
-  - Id: aa72e7da-a2ae-438c-b7fa-3f4fb4b658d5
+  - Id: ede6e9e1-1f99-4c90-a4c9-d6f9e143de18
     Type: 0
     State: 1
-    PrimaryMissionDetails:
-      Preview: {fileID: 0}
+    MissionOptions:
+    - Id: 482b6663-2355-4f37-be95-1a9f7b9dd23e
+      Preview: {fileID: 21300000, guid: 5596318320a201c43998d48467cc4943, type: 3}
       MapPosition: {x: 25, y: 150}
       MapDisplayName: 6
       Name: "\u0420\u0435\u043A\u0440\u0443\u0442\u0438\u043D\u0433 \u0412\u043E\u0440\u043E\u043D\u0430"
@@ -364,29 +329,21 @@ MonoBehaviour:
       PlayerSide: "\u0412\u043E\u0440\u043E\u043D\u044B"
       EnemySide: "\u041E\u0440\u043B\u044B"
       Reward:
-        UnlockedHeroes: []
-        HeroScore: 0
+        UnlockedHeroes:
+        - cf6e5fba-602c-4604-94f5-1351c08e414f
+        HeroScore: 5
         OtherHeroScore: []
-    SecondaryMissionDetails:
-      Preview: {fileID: 0}
-      MapPosition: {x: 0, y: 0}
-      MapDisplayName: 
-      Name: 
-      PreMissionDescription: 
-      Description: 
-      PlayerSide: 
-      EnemySide: 
-      Reward:
-        UnlockedHeroes: []
-        HeroScore: 0
-        OtherHeroScore: []
+      Completed: 0
     RequiredPreviousMissions: []
+    RequiredPreviousOptions:
+    - 2c650c69-21ef-4213-8038-0e097653b3ca
     TemporarilyLockedMissions: []
-  - Id: 811313eb-22c7-4099-a455-6d3a9f45a1b5
+  - Id: ec69f143-1796-458a-a6ac-51c2bb2b46d5
     Type: 0
     State: 1
-    PrimaryMissionDetails:
-      Preview: {fileID: 0}
+    MissionOptions:
+    - Id: 62e356af-01ec-4697-83cd-54cdd231ca19
+      Preview: {fileID: 21300000, guid: 2334ab21d9cdddf4484c72635238eed3, type: 3}
       MapPosition: {x: 700, y: 50}
       MapDisplayName: 7
       Name: "\u0423\u0442\u043A\u0438, \u0443\u0423\u0443"
@@ -417,28 +374,23 @@ MonoBehaviour:
       EnemySide: "\u0427\u0430\u0439\u043A\u0438, \u0412\u043E\u0440\u043E\u043D\u044B"
       Reward:
         UnlockedHeroes: []
-        HeroScore: 0
-        OtherHeroScore: []
-    SecondaryMissionDetails:
-      Preview: {fileID: 0}
-      MapPosition: {x: 0, y: 0}
-      MapDisplayName: 
-      Name: 
-      PreMissionDescription: 
-      Description: 
-      PlayerSide: 
-      EnemySide: 
-      Reward:
-        UnlockedHeroes: []
-        HeroScore: 0
-        OtherHeroScore: []
-    RequiredPreviousMissions: []
+        HeroScore: 5
+        OtherHeroScore:
+        - HeroId: cf6e5fba-602c-4604-94f5-1351c08e414f
+          Points: -15
+        - HeroId: 39f83b13-3684-4d33-be18-105b4fb39fb0
+          Points: -15
+      Completed: 0
+    RequiredPreviousMissions:
+    - eb91b1d3-c4cc-4eb7-9a55-0017cfb450fe
+    RequiredPreviousOptions: []
     TemporarilyLockedMissions: []
-  - Id: 9f9d7dc6-e416-4d2d-9e93-5b4fd12f7407
+  - Id: e57e154e-1047-4280-8c72-da6f5eb7b1b2
     Type: 0
     State: 1
-    PrimaryMissionDetails:
-      Preview: {fileID: 0}
+    MissionOptions:
+    - Id: ca5a580d-f67b-4a5a-9f64-7372155ae2d8
+      Preview: {fileID: 21300000, guid: 60ec81c63bb2dd343a7ac2d6c2adc5d5, type: 3}
       MapPosition: {x: -500, y: 350}
       MapDisplayName: 8
       Name: "\u041F\u0443\u0441\u0442\u0435\u043B\u044C\u0433\u0438 \u0445\u043E\u0442\u044F\u0442
@@ -458,28 +410,25 @@ MonoBehaviour:
       EnemySide: "\u041E\u0440\u043B\u044B"
       Reward:
         UnlockedHeroes: []
-        HeroScore: 0
-        OtherHeroScore: []
-    SecondaryMissionDetails:
-      Preview: {fileID: 0}
-      MapPosition: {x: 0, y: 0}
-      MapDisplayName: 
-      Name: 
-      PreMissionDescription: 
-      Description: 
-      PlayerSide: 
-      EnemySide: 
-      Reward:
-        UnlockedHeroes: []
-        HeroScore: 0
-        OtherHeroScore: []
-    RequiredPreviousMissions: []
+        HeroScore: 5
+        OtherHeroScore:
+        - HeroId: 39f83b13-3684-4d33-be18-105b4fb39fb0
+          Points: 10
+        - HeroId: 7670810b-5607-4ea0-97ad-c30fa90b316e
+          Points: 10
+        - HeroId: cf6e5fba-602c-4604-94f5-1351c08e414f
+          Points: 10
+      Completed: 0
+    RequiredPreviousMissions:
+    - ef4d9bfa-42bf-40ac-8c61-851ce868ead8
+    RequiredPreviousOptions: []
     TemporarilyLockedMissions: []
-  - Id: 79282dc8-3dd7-44de-9ec6-255668fa7ed3
+  - Id: a9ccf03b-076d-48d5-87c2-1b3dcc483d46
     Type: 0
     State: 1
-    PrimaryMissionDetails:
-      Preview: {fileID: 0}
+    MissionOptions:
+    - Id: dc486d4f-9238-411b-a779-392d203d5927
+      Preview: {fileID: 21300000, guid: 5596318320a201c43998d48467cc4943, type: 3}
       MapPosition: {x: 25, y: 300}
       MapDisplayName: 9
       Name: "\u041D\u0430\u043F\u0430\u0434\u0435\u043D\u0438\u0435 \u0410\u043D\u0442\u0430\u0433\u043E\u043D\u0438\u0441\u0442\u0430"
@@ -526,29 +475,24 @@ MonoBehaviour:
       EnemySide: "\u041E\u0440\u043B\u044B + \u0421\u043E\u0432\u044B \u0438\u043B\u0438
         \u0412\u043E\u0440\u043E\u043D\u044B"
       Reward:
-        UnlockedHeroes: []
-        HeroScore: 0
+        UnlockedHeroes:
+        - cf6e5fba-602c-4604-94f5-1351c08e414f
+        - 7670810b-5607-4ea0-97ad-c30fa90b316e
+        HeroScore: 5
         OtherHeroScore: []
-    SecondaryMissionDetails:
-      Preview: {fileID: 0}
-      MapPosition: {x: 0, y: 0}
-      MapDisplayName: 
-      Name: 
-      PreMissionDescription: 
-      Description: 
-      PlayerSide: 
-      EnemySide: 
-      Reward:
-        UnlockedHeroes: []
-        HeroScore: 0
-        OtherHeroScore: []
-    RequiredPreviousMissions: []
+      Completed: 0
+    RequiredPreviousMissions:
+    - ef4d9bfa-42bf-40ac-8c61-851ce868ead8
+    - ede6e9e1-1f99-4c90-a4c9-d6f9e143de18
+    - 8817af4b-d6d6-4045-93dc-653b4a75659a
+    RequiredPreviousOptions: []
     TemporarilyLockedMissions: []
-  - Id: 943f8199-395e-49d7-875e-478ae63a3c36
+  - Id: 55f9f29c-af14-4d78-9fb2-91d8f514a10a
     Type: 0
     State: 1
-    PrimaryMissionDetails:
-      Preview: {fileID: 0}
+    MissionOptions:
+    - Id: 43bf479a-e0c0-4468-acb5-60612998d2c7
+      Preview: {fileID: 21300000, guid: 2334ab21d9cdddf4484c72635238eed3, type: 3}
       MapPosition: {x: 200, y: 400}
       MapDisplayName: 10
       Name: "\u0421\u0438\u043C\u0443\u0440\u0433 \u043F\u0440\u043E\u0441\u043D\u0443\u043B\u0441\u044F"
@@ -576,28 +520,19 @@ MonoBehaviour:
         \u0427\u0430\u0439\u043A\u0438, \u0421\u043E\u0432\u044B"
       Reward:
         UnlockedHeroes: []
-        HeroScore: 0
+        HeroScore: 5
         OtherHeroScore: []
-    SecondaryMissionDetails:
-      Preview: {fileID: 0}
-      MapPosition: {x: 0, y: 0}
-      MapDisplayName: 
-      Name: 
-      PreMissionDescription: 
-      Description: 
-      PlayerSide: 
-      EnemySide: 
-      Reward:
-        UnlockedHeroes: []
-        HeroScore: 0
-        OtherHeroScore: []
-    RequiredPreviousMissions: []
+      Completed: 0
+    RequiredPreviousMissions:
+    - a9ccf03b-076d-48d5-87c2-1b3dcc483d46
+    RequiredPreviousOptions: []
     TemporarilyLockedMissions: []
-  - Id: 1470fa0b-8790-46d4-b1a6-f3e26860a8db
+  - Id: 47eed3d4-2d74-46f8-8fa7-b47ed00b962f
     Type: 0
     State: 1
-    PrimaryMissionDetails:
-      Preview: {fileID: 0}
+    MissionOptions:
+    - Id: b8fedeac-d048-48a0-a320-14025282d0be
+      Preview: {fileID: 21300000, guid: 5596318320a201c43998d48467cc4943, type: 3}
       MapPosition: {x: 0, y: 500}
       MapDisplayName: 11
       Name: "\u0424\u0435\u043D\u0438\u043A\u0441 \u043F\u0440\u043E\u0441\u043D\u0443\u043B\u0441\u044F"
@@ -624,20 +559,10 @@ MonoBehaviour:
       EnemySide: "\u0424\u0435\u043D\u0438\u043A\u0441\u044B"
       Reward:
         UnlockedHeroes: []
-        HeroScore: 0
+        HeroScore: 5
         OtherHeroScore: []
-    SecondaryMissionDetails:
-      Preview: {fileID: 0}
-      MapPosition: {x: 0, y: 0}
-      MapDisplayName: 
-      Name: 
-      PreMissionDescription: 
-      Description: 
-      PlayerSide: 
-      EnemySide: 
-      Reward:
-        UnlockedHeroes: []
-        HeroScore: 0
-        OtherHeroScore: []
-    RequiredPreviousMissions: []
+      Completed: 0
+    RequiredPreviousMissions:
+    - 55f9f29c-af14-4d78-9fb2-91d8f514a10a
+    RequiredPreviousOptions: []
     TemporarilyLockedMissions: []

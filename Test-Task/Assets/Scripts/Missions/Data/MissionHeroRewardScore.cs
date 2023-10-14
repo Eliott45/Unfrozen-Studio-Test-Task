@@ -6,6 +6,6 @@ namespace Missions.Data
     public struct MissionHeroRewardScore
     {
         public string HeroId;
-        public int Score;
+        public int Points;
     }
 }

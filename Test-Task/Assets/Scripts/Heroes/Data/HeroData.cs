@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Heroes.Data
 {
     [Serializable]
-    public class HeroData
+    public class HeroData : ICloneable
     {
         public string Name;
         public string Id;
@@ -13,5 +13,19 @@ namespace Heroes.Data
         public Sprite AvatarBackground;
         public bool Selected;
         public int Points;
+        
+        public object Clone()
+        {
+            return new HeroData
+            {
+                Name = Name,
+                Id = Id,
+                HeroState = HeroState,
+                Avatar = Avatar,
+                AvatarBackground = AvatarBackground,
+                Selected = Selected,
+                Points = Points
+            };
+        }
     }
 }
