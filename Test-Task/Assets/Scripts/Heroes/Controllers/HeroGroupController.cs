@@ -83,7 +83,16 @@ namespace UI.Controllers
             foreach (var hero in _heroControllers)
             {
                 hero.Value.Unselect();
-                _heroData[hero.Key].Selected = false;
+
+                if (_heroData.TryGetValue(hero.Key, out var heroData))
+                {
+                    heroData.Selected = false;
+                }
+                else
+                {
+                    Debug.LogError($"Hero with id: {hero.Key} doesn't find!");
+                    return;
+                }
             }
             OnHeroChange?.Invoke();
         }
@@ -98,9 +107,21 @@ namespace UI.Controllers
         {
             foreach (var heroRewardScore in reward.OtherHeroScore)
             {
-                var hero = _heroData[heroRewardScore.HeroId];
-                hero.Points += heroRewardScore.Points;
-                _heroControllers[hero.Id].LoadData(hero);
+                if (_heroData.TryGetValue(heroRewardScore.HeroId, out var heroData))
+                {
+                    if (heroRewardScore.Points > 0 && heroData.HeroState == HeroState.Locked)
+                    {
+                        continue;
+                    }
+                    
+                    heroData.Points += heroRewardScore.Points;
+                    _heroControllers[heroData.Id].LoadData(heroData);
+                }
+                else
+                {
+                    Debug.LogError($"Hero with id: {heroRewardScore.HeroId} doesn't find!");
+                    return;
+                }
             }
         }
 
@@ -108,9 +129,15 @@ namespace UI.Controllers
         {
             foreach (var unlockedHeroId in reward.UnlockedHeroes)
             {
-                var hero = _heroData[unlockedHeroId];
-                hero.HeroState = HeroState.Available;
-                _heroControllers[hero.Id].LoadData(hero);
+                if (_heroData.TryGetValue(unlockedHeroId, out var heroData))
+                {
+                    heroData.HeroState = HeroState.Available;
+                    _heroControllers[unlockedHeroId].LoadData(heroData);
+                }
+                else
+                {
+                    Debug.LogError($"Hero with id: {unlockedHeroId} doesn't find!");
+                }
             }
         }
 
@@ -125,8 +152,16 @@ namespace UI.Controllers
             UnselectAll();
             
             _heroControllers[heroId].Select();
-            _selectedHero = _heroData[heroId];
-            _heroData[heroId].Selected = true;
+            
+            if (_heroData.TryGetValue(heroId, out var heroData))
+            {
+                _selectedHero = heroData;
+                heroData.Selected = true;
+            } else
+            {
+                Debug.LogError($"Hero with id: {heroId} doesn't find!");
+            }
+
             
             OnHeroChange?.Invoke();
         }

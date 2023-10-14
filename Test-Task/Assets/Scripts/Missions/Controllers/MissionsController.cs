@@ -118,31 +118,53 @@ namespace Missions.Controllers
 
         private void OnPressSelectMission(string missionId)
         {
-            _preMissionViewController.ShowView(_missionData[missionId]);
+            if(_missionData.TryGetValue(missionId, out var mission))
+            {
+                _preMissionViewController.ShowView(mission);
+            }
+            else
+            {
+                Debug.LogError($"Mission with id: {missionId} doesn't find!");
+            }
         }
 
         private void OnPressStartMission(string optionId, MissionData mission)
         {
             _preMissionViewController.HideView();
-
-            foreach (var missionOption in _missionData[mission.Id].MissionOptions)
+            
+            if(_missionData.TryGetValue(mission.Id, out var missionData))
             {
-                if (missionOption.Id == optionId)
+                foreach (var missionOption in missionData.MissionOptions)
                 {
-                    _missionProgressController.StartMission(mission.Id, missionOption);
-                    break;
+                    if (missionOption.Id == optionId)
+                    {
+                        _missionProgressController.StartMission(mission.Id, missionOption);
+                        break;
+                    }
                 }
+            }
+            else
+            {
+                Debug.LogError($"Mission with id: {mission.Id} doesn't find!");
+                return;
             }
         }
 
         private void OnMissionComplete(string id, MissionInfo info)
         {
-            _missionData[id].State = MissionState.Completed;
-            info.Completed = true;
-
-            foreach (var missionViewController in _missionPoints[id])
+            if(_missionData.TryGetValue(id, out var mission))
             {
-                missionViewController.ApplyState(_missionData[id].State);
+                mission.State = MissionState.Completed;
+                info.Completed = true;
+
+                foreach (var missionViewController in _missionPoints[id])
+                {
+                    missionViewController.ApplyState(mission.State);
+                }
+            }
+            else
+            {
+                Debug.LogError($"Mission with id: {id} doesn't find!");
             }
         }
     }
