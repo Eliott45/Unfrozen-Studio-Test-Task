@@ -63,6 +63,7 @@ namespace UI.Controllers
             foreach (var optionView in _optionViews)
             {
                 optionView.OnStartButton -= OnOptionPressStart;
+                optionView.OnCloseButton -= HideView;
                 
                 _poolApplication.Return(optionView.gameObject);
             }
@@ -85,6 +86,7 @@ namespace UI.Controllers
             view.UpdateButtonInteractable(CanStartMission());
 
             view.OnStartButton += OnOptionPressStart;
+            view.OnCloseButton += HideView;;
             
             view.gameObject.SetActive(true);
         }

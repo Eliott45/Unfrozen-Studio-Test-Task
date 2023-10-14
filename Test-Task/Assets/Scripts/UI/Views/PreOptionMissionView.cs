@@ -12,19 +12,23 @@ namespace UI.Views
         [SerializeField] private TextMeshProUGUI _descriptionText;
         [SerializeField] private Image _previewImage;
         [SerializeField] private Button _startButton;
+        [SerializeField] private Button _closeButton;
 
         public event Action<string> OnStartButton;
+        public event Action OnCloseButton;
 
         private string _id;
 
         private void OnEnable()
         {
             _startButton.Subscribe(() => OnStartButton?.Invoke(_id));
+            _closeButton.Subscribe(() => OnCloseButton?.Invoke());
         }
 
         private void OnDisable()
         {
             _startButton.UnsubscribeAll();
+            _closeButton.UnsubscribeAll();
         }
 
         public void SetId(string id)
