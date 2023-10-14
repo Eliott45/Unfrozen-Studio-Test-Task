@@ -193,14 +193,11 @@ namespace Missions.Controllers
                     continue;
                 }
 
-                if (mission.Value.RequiredPreviousOptions == null ||
-                    mission.Value.RequiredPreviousOptions.Contains(missionInfo.Id))
+                if (mission.Value.RequiredPreviousOptions == null || mission.Value.RequiredPreviousOptions.Contains(missionInfo.Id))
                 {
-                    continue;
+                    mission.Value.State = MissionState.Active;
+                    ApplyPointsState(mission.Key, mission.Value.State);
                 }
-                
-                mission.Value.State = MissionState.Active;
-                ApplyPointsState(mission.Key, mission.Value.State);
             }
 
             if (missionData.TemporarilyLockedMissions == null)
