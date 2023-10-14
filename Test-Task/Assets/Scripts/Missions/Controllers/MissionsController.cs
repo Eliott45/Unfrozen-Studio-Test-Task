@@ -121,15 +121,15 @@ namespace Missions.Controllers
             _preMissionViewController.ShowView(_missionData[missionId]);
         }
 
-        private void OnPressStartMission(string id, MissionData mission)
+        private void OnPressStartMission(string optionId, MissionData mission)
         {
             _preMissionViewController.HideView();
 
             foreach (var missionOption in _missionData[mission.Id].MissionOptions)
             {
-                if (missionOption.Id == id)
+                if (missionOption.Id == optionId)
                 {
-                    _missionProgressController.StartMission(id, missionOption);
+                    _missionProgressController.StartMission(mission.Id, missionOption);
                     break;
                 }
             }
@@ -138,7 +138,7 @@ namespace Missions.Controllers
         private void OnMissionComplete(string id, MissionInfo info)
         {
             _missionData[id].State = MissionState.Completed;
-            info.Selected = true;
+            info.Completed = true;
 
             foreach (var missionViewController in _missionPoints[id])
             {

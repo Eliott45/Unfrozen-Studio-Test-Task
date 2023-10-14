@@ -40,11 +40,17 @@ namespace Missions.Configs
 		{
             foreach (var mission in _missions)
             {
-                mission.Id = Guid.NewGuid().ToString();
+                if (mission.Id == string.Empty)
+                {
+                    mission.Id = Guid.NewGuid().ToString();
+                }
                 
                 foreach (var option in mission.MissionOptions)
                 {
-                    option.Id = Guid.NewGuid().ToString();
+                    if (option.Id== string.Empty)
+                    {
+                        option.Id = Guid.NewGuid().ToString();
+                    }
                 }
             }
 		}

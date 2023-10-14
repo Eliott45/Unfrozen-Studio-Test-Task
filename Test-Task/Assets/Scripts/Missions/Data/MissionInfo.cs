@@ -16,7 +16,7 @@ namespace Missions.Data
         public string PlayerSide;
         public string EnemySide;
         public MissionReward Reward;
-        public bool Selected;
+        public bool Completed;
         
         public object Clone()
         {
@@ -32,7 +32,7 @@ namespace Missions.Data
                 PlayerSide = PlayerSide,
                 EnemySide = EnemySide,
                 Reward = Reward,
-                Selected = Selected
+                Completed = Completed
             };
         }
     }
