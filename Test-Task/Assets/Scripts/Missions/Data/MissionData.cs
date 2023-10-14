@@ -30,6 +30,7 @@ namespace Missions.Data
                 State = State,
                 MissionOptions = clonedMissionInfos,
                 RequiredPreviousMissions = new List<string>(RequiredPreviousMissions),
+                RequiredPreviousOptions = new List<string>(RequiredPreviousOptions),
                 TemporarilyLockedMissions = new List<string>(TemporarilyLockedMissions)
             };
         }

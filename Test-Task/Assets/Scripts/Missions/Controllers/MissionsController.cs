@@ -157,14 +157,45 @@ namespace Missions.Controllers
                 mission.State = MissionState.Completed;
                 info.Completed = true;
 
-                foreach (var missionViewController in _missionPoints[id])
-                {
-                    missionViewController.ApplyState(mission.State);
-                }
+                ApplyPointsState(mission.Id, mission.State);
+
+                CheckAndUnlockMissions(id, info.Id);
             }
             else
             {
                 Debug.LogError($"Mission with id: {id} doesn't find!");
+            }
+        }
+
+        private void CheckAndUnlockMissions(string id, string optionId)
+        {
+            foreach (var mission in _missionData)
+            {
+                if (mission.Value.State != MissionState.Locked)
+                {
+                    continue;
+                }
+                
+                if (mission.Value.RequiredPreviousMissions != null && mission.Value.RequiredPreviousMissions.Contains(id))
+                {
+                    mission.Value.State = MissionState.Active;
+                    ApplyPointsState(mission.Key, mission.Value.State);
+                    continue;
+                }
+
+                if (mission.Value.RequiredPreviousOptions != null && mission.Value.RequiredPreviousOptions.Contains(optionId))
+                {
+                    mission.Value.State = MissionState.Active;
+                    ApplyPointsState(mission.Key, mission.Value.State);
+                }
+            }
+        }
+
+        private void ApplyPointsState(string missionId, MissionState state)
+        {
+            foreach (var missionViewController in _missionPoints[missionId])
+            {
+                missionViewController.ApplyState(state);
             }
         }
     }
