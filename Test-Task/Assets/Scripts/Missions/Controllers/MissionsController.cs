@@ -136,17 +136,19 @@ namespace Missions.Controllers
             {
                 foreach (var missionOption in missionData.MissionOptions)
                 {
-                    if (missionOption.Id == optionId)
+                    if (missionOption.Id != optionId)
                     {
-                        _missionProgressController.StartMission(mission.Id, missionOption);
-                        break;
+                        continue;
                     }
+                    
+                    _missionProgressController.StartMission(mission.Id, missionOption);
+                    
+                    break;
                 }
             }
             else
             {
                 Debug.LogError($"Mission with id: {mission.Id} doesn't find!");
-                return;
             }
         }
 
@@ -158,36 +160,12 @@ namespace Missions.Controllers
                 info.Completed = true;
 
                 ApplyPointsState(mission.Id, mission.State);
-
-                CheckAndUnlockMissions(id, info.Id);
+                CheckAndUnlockMissions(mission, info);
+                CheckAndTemporarilyLockMissions();
             }
             else
             {
                 Debug.LogError($"Mission with id: {id} doesn't find!");
-            }
-        }
-
-        private void CheckAndUnlockMissions(string id, string optionId)
-        {
-            foreach (var mission in _missionData)
-            {
-                if (mission.Value.State != MissionState.Locked)
-                {
-                    continue;
-                }
-                
-                if (mission.Value.RequiredPreviousMissions != null && mission.Value.RequiredPreviousMissions.Contains(id))
-                {
-                    mission.Value.State = MissionState.Active;
-                    ApplyPointsState(mission.Key, mission.Value.State);
-                    continue;
-                }
-
-                if (mission.Value.RequiredPreviousOptions != null && mission.Value.RequiredPreviousOptions.Contains(optionId))
-                {
-                    mission.Value.State = MissionState.Active;
-                    ApplyPointsState(mission.Key, mission.Value.State);
-                }
             }
         }
 
@@ -196,6 +174,80 @@ namespace Missions.Controllers
             foreach (var missionViewController in _missionPoints[missionId])
             {
                 missionViewController.ApplyState(state);
+            }
+        }
+        
+        private void CheckAndUnlockMissions(MissionData missionData, MissionInfo missionInfo)
+        {
+            foreach (var mission in _missionData)
+            {
+                if (mission.Value.State != MissionState.Locked)
+                {
+                    continue;
+                }
+                
+                if (mission.Value.RequiredPreviousMissions != null && mission.Value.RequiredPreviousMissions.Contains(missionData.Id))
+                {
+                    mission.Value.State = MissionState.Active;
+                    ApplyPointsState(mission.Key, mission.Value.State);
+                    continue;
+                }
+
+                if (mission.Value.RequiredPreviousOptions == null ||
+                    mission.Value.RequiredPreviousOptions.Contains(missionInfo.Id))
+                {
+                    continue;
+                }
+                
+                mission.Value.State = MissionState.Active;
+                ApplyPointsState(mission.Key, mission.Value.State);
+            }
+
+            if (missionData.TemporarilyLockedMissions == null)
+            {
+                return;
+            }
+            
+            foreach (var lockedMissionId in missionData.TemporarilyLockedMissions)
+            {
+                if (_missionData.TryGetValue(lockedMissionId, out var mission))
+                {
+                    if (mission.State != MissionState.TemporarilyLocked)
+                    {
+                        continue;
+                    }
+                    
+                    mission.State = MissionState.Active;
+                    ApplyPointsState(mission.Id, mission.State);
+                }
+                else
+                {
+                    Debug.LogError($"Mission with id: {lockedMissionId} doesn't find!");    
+                }
+            }
+        }
+
+        private void CheckAndTemporarilyLockMissions()
+        {
+            foreach (var mission in _missionData)
+            {
+                if (mission.Value.State != MissionState.Active || mission.Value.TemporarilyLockedMissions == null)
+                {
+                    continue;
+                }
+                
+                foreach (var lockedMissionId in mission.Value.TemporarilyLockedMissions)
+                {
+                    if (_missionData.TryGetValue(lockedMissionId, out var missionData))
+                    {
+                        missionData.State = MissionState.TemporarilyLocked;
+                        ApplyPointsState(missionData.Id, missionData.State);
+                    }
+                    else
+                    {
+                        Debug.LogError($"Mission with id: {lockedMissionId} doesn't find!");    
+                    }
+                }
             }
         }
     }

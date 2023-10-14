@@ -198,7 +198,8 @@ MonoBehaviour:
     RequiredPreviousMissions:
     - 2ad50a6e-503b-440f-ac0a-fb977ba57c4a
     RequiredPreviousOptions: []
-    TemporarilyLockedMissions: []
+    TemporarilyLockedMissions:
+    - eb91b1d3-c4cc-4eb7-9a55-0017cfb450fe
   - Id: 8817af4b-d6d6-4045-93dc-653b4a75659a
     Type: 0
     State: 1
