@@ -350,7 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dcc1e93e78e4494bad6fcb89492ea00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultCount: 5
+  _defaultCount: 3
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,6 +531,7 @@ MonoBehaviour:
   _missionsConfig: {fileID: 11400000, guid: b878b841920d2a949b03c6955c1f6c22, type: 2}
   _missionViewPrefab: {fileID: -8976478791241986250, guid: 78eb05c0b9f61b54289437ae0ba22893, type: 3}
   _preMissionView: {fileID: 2082439139}
+  _preOptionMissionViewPrefab: {fileID: 5104927382442228658, guid: b8374c17e2566cf4d883ca18bf559769, type: 3}
   _missionCompleteView: {fileID: 137602475}
   _mapTransform: {fileID: 1434759027}
 --- !u!114 &1119051544

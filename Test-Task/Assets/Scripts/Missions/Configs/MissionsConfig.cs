@@ -41,8 +41,11 @@ namespace Missions.Configs
             foreach (var mission in _missions)
             {
                 mission.Id = Guid.NewGuid().ToString();
-                mission.PrimaryMissionDetails.OptionId = Guid.NewGuid().ToString();
-                mission.SecondaryMissionDetails.OptionId = Guid.NewGuid().ToString();
+                
+                foreach (var option in mission.MissionOptions)
+                {
+                    option.Id = Guid.NewGuid().ToString();
+                }
             }
 		}
 #endif

@@ -1,34 +1,36 @@
 ﻿using System;
+using System.Collections.Generic;
 using Missions.Data;
+using Pool.Application;
 using UI.Views;
 
 namespace UI.Controllers
 {
     public class PreMissionViewController : IDisposable
     {
-        public event Action<string, MissionInfo> OnStartMission;
+        public event Action<string, MissionData> OnPressStartMission;
         
         private readonly PreMissionView _view;
-        private readonly PreOptionMissionView _primaryOptionView;
-        private readonly PreOptionMissionView _secondaryOptionView;
+        private readonly PreOptionMissionView _preOptionMissionViewPrefab;
         private readonly HeroGroupController _heroGroupController;
-
+        private readonly IPoolApplication _poolApplication;
+        private readonly List<PreOptionMissionView> _optionViews = new(2);
+        
         private MissionData _missionData;
 
-        public PreMissionViewController(PreMissionView view, HeroGroupController heroGroupController)
+        public PreMissionViewController(PreMissionView view, PreOptionMissionView preOptionMissionViewPrefab, 
+            HeroGroupController heroGroupController, IPoolApplication poolApplication)
         {
             _view = view ? view : throw new NullReferenceException(nameof(PreMissionView));
+            _preOptionMissionViewPrefab = preOptionMissionViewPrefab ? preOptionMissionViewPrefab : throw new NullReferenceException(nameof(PreOptionMissionView));
+            
             _heroGroupController = heroGroupController ?? throw new NullReferenceException(nameof(HeroGroupController));
-
-            _primaryOptionView = view.GetPrimaryOptionView();
-            _secondaryOptionView = view.GetSecondaryOptionView();
+            _poolApplication = poolApplication ?? throw new NullReferenceException(nameof(IPoolApplication));
         }
 
         public void Dispose()
         {
             _heroGroupController.OnHeroChange -= OnHeroChange;
-            _primaryOptionView.OnStartButton -= OnPrimaryStartButtonClick;
-            _secondaryOptionView.OnStartButton -= OnSecondaryStartButtonClick;
         }
         
         public void ShowView(MissionData data)
@@ -39,17 +41,15 @@ namespace UI.Controllers
             
             switch (data.Type)
             {
-                case MissionType.Single:
-                    LoadAndShowOptionView(_primaryOptionView, data.PrimaryMissionDetails);
+                case MissionType.SingleOption:
+                    LoadAndShowOptionView(data.MissionOptions[0]);
                     
-                    _primaryOptionView.OnStartButton += OnPrimaryStartButtonClick;
                     break;
-                case MissionType.Double:
-                    LoadAndShowOptionView(_primaryOptionView, data.PrimaryMissionDetails);
-                    LoadAndShowOptionView(_secondaryOptionView, data.SecondaryMissionDetails);
-                    
-                    _primaryOptionView.OnStartButton += OnPrimaryStartButtonClick;
-                    _secondaryOptionView.OnStartButton += OnSecondaryStartButtonClick;
+                case MissionType.MultipleOptions:
+                    foreach (var missionOption in data.MissionOptions)
+                    {
+                        LoadAndShowOptionView(missionOption);
+                    }
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -60,22 +60,38 @@ namespace UI.Controllers
         
         public void HideView()
         {
-            _primaryOptionView.OnStartButton -= OnPrimaryStartButtonClick;
-            _secondaryOptionView.OnStartButton -= OnSecondaryStartButtonClick;
-            _heroGroupController.OnHeroChange -= OnHeroChange;
+            foreach (var optionView in _optionViews)
+            {
+                optionView.OnStartButton -= OnOptionPressStart;
+                
+                _poolApplication.Return(optionView.gameObject);
+            }
             
-            _primaryOptionView.gameObject.SetActive(false);
-            _secondaryOptionView.gameObject.SetActive(false);
+            _optionViews.Clear();
+            
+            _heroGroupController.OnHeroChange -= OnHeroChange;
         }
 
-        private void LoadAndShowOptionView(PreOptionMissionView view, MissionInfo info)
+        private void LoadAndShowOptionView(MissionInfo info)
         {
+            var view = _poolApplication.Create(_preOptionMissionViewPrefab, _view.gameObject.transform);
+            
+            _optionViews.Add(view);
+            
+            view.SetId(info.Id);
             view.SetName(info.Name);
             view.SetDescription(info.PreMissionDescription);
             view.SetPreviewSprite(info.Preview);
             view.UpdateButtonInteractable(CanStartMission());
+
+            view.OnStartButton += OnOptionPressStart;
             
             view.gameObject.SetActive(true);
+        }
+
+        private void OnOptionPressStart(string id)
+        {
+            OnPressStartMission?.Invoke(id, _missionData);
         }
 
         private bool CanStartMission()
@@ -85,18 +101,10 @@ namespace UI.Controllers
         
         private void OnHeroChange()
         {
-            _primaryOptionView.UpdateButtonInteractable(CanStartMission());
-            _secondaryOptionView.UpdateButtonInteractable(CanStartMission());
-        }
-
-        private void OnPrimaryStartButtonClick()
-        {
-            OnStartMission?.Invoke(_missionData.Id, _missionData.PrimaryMissionDetails);
-        }
-        
-        private void OnSecondaryStartButtonClick()
-        {
-            OnStartMission?.Invoke(_missionData.Id, _missionData.SecondaryMissionDetails);
+            foreach (var option in _optionViews)
+            {
+                option.UpdateButtonInteractable(CanStartMission());
+            }
         }
     }
 }

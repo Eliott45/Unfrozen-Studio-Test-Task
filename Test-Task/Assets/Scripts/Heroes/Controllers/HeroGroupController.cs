@@ -83,6 +83,7 @@ namespace UI.Controllers
             foreach (var hero in _heroControllers)
             {
                 hero.Value.Unselect();
+                _heroData[hero.Key].Selected = false;
             }
             OnHeroChange?.Invoke();
         }
@@ -125,6 +126,7 @@ namespace UI.Controllers
             
             _heroControllers[heroId].Select();
             _selectedHero = _heroData[heroId];
+            _heroData[heroId].Selected = true;
             
             OnHeroChange?.Invoke();
         }

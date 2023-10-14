@@ -6,7 +6,7 @@ namespace Missions.Data
     [Serializable]
     public class MissionInfo : ICloneable
     {
-        public string OptionId;
+        public string Id;
         public Sprite Preview;
         public Vector2 MapPosition;
         public string MapDisplayName;
@@ -16,13 +16,13 @@ namespace Missions.Data
         public string PlayerSide;
         public string EnemySide;
         public MissionReward Reward;
-        public bool Completed;
+        public bool Selected;
         
         public object Clone()
         {
             return new MissionInfo
             {
-                OptionId = OptionId,
+                Id = Id,
                 Preview = Preview,
                 MapPosition = MapPosition,
                 MapDisplayName = MapDisplayName,
@@ -32,7 +32,7 @@ namespace Missions.Data
                 PlayerSide = PlayerSide,
                 EnemySide = EnemySide,
                 Reward = Reward,
-                Completed = Completed
+                Selected = Selected
             };
         }
     }

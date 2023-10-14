@@ -13,16 +13,23 @@ namespace UI.Views
         [SerializeField] private Image _previewImage;
         [SerializeField] private Button _startButton;
 
-        public event Action OnStartButton;
+        public event Action<string> OnStartButton;
+
+        private string _id;
 
         private void OnEnable()
         {
-            _startButton.Subscribe(() => OnStartButton?.Invoke());
+            _startButton.Subscribe(() => OnStartButton?.Invoke(_id));
         }
 
         private void OnDisable()
         {
             _startButton.UnsubscribeAll();
+        }
+
+        public void SetId(string id)
+        {
+            _id = id;
         }
 
         public void SetName(string missionName)
